@@ -3,39 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <link  rel="stylesheet" href="sign-up.css">
+    <link  rel="stylesheet" href="../styles/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <title>Sign Up</title>
 </head>
     <body>
+    <div class="wrapper">
+        <header class="header">
+            <h2 class="header-title">Sign Up</h2>
+        </header>
         <main class="main">
-            <h2 class="main-title">Sign Up</h2>
-            <form class="main-form">
-                <input type="text" aria-label="first-name" placeholder="First Name" class="main-form__input main-form__input-first-name">
-                <input type="text" aria-label="last-name" placeholder="Last Name" class="main-form__input main-form__input-last-name">
-                <input type="email" aria-label="email" placeholder="Email" class="main-form__input main-form__input-email">
-                <div class="main-form__container">
-                    <input type="password" aria-label="password" placeholder="fjgl88" class="main-form__input main-form__input-password">
-                    <img src="../../assets/svg/visible-password-icon.svg" alt="visible-password-icon" class="main-form__container__icon-password" >
-                </div>
-
-                <div class="main-form__container">
-                    <input type="password" aria-label="password" placeholder="Confirm Password" class="main-form__input main-form__input-password-check">
-                    <img src="../../assets/svg/visible-password-icon.svg" alt="visible-password-icon" class="main-form__container__icon-password" >
-                </div>
-                <div class="main-form__container-button-submit">
-                    <button class="main-form__button-submit" type="submit">
-                        Sign up
-                        <img src="../../assets/svg/arrow-icon.svg" alt="arrow-icon" class="main-form__container-button-arrow-icon">
-                    </button>
-                </div>
-            </form>
-            <footer class="footer">
-                <p class="footer-title">Already have an account?</p>
-                <a href="#" class="footer-sign">Sign in</a>
-            </footer>
+           <form class="main-form">
+               <div class="main-form__input main-form__input_first-name">
+                   <label>
+                       <img src="../../assets/svg/user-icon.svg" alt="user-icon" class="main-form__input-user-icon">
+                       <input class="еу" type="text" placeholder="First Name">
+                   </label>
+               </div>
+               <div class="main-form__input main-form__input_last-name">
+                   <label>
+                       <img src="../../assets/svg/user-icon.svg" alt="user-icon" class="main-form__input-user-icon">
+                       <input type="text" placeholder="Last Name">
+                   </label>
+               </div>
+               <div class="main-form__input main-form__input_email">
+                   <label>
+                       <img src="../../assets/svg/mail-icon.svg" alt="mail-icon" class="main-form__input-mail-icon">
+                       <input type="email" placeholder="Email">
+                   </label>
+               </div>
+               <div class="main-form__input main-form__input_password">
+                   <label>
+                       <img src="../../assets/svg/password-icon.svg" alt="password-icon" class="main-form__input-password-icon">
+                       <input type="password" placeholder="Password">
+                       <img src="../../assets/svg/visible-password-icon.svg" alt="visible-password-icon" class="main-form__input-password-visible-icon">
+                   </label>
+               </div>
+               <div class="main-form__input main-form__input_confirm-password">
+                   <label>
+                       <img src="../../assets/svg/check-icon.svg" alt="check-icon" class="main-form__input-check-icon">
+                       <input type="password" placeholder="Confirm Password">
+                       <img src="../../assets/svg/visible-password-icon.svg" alt="visible-password-icon" class="main-form__input-password-visible-icon">
+                   </label>
+               </div>
+               <div class="main-form__button">
+                   <button class="main-form__button-submit" type="button">Sign up</button>
+               </div>
+           </form>
         </main>
+        <footer class="footer">
+            <p class="footer-title">Already have an account?</p>
+            <a class="footer-link" href="#">Sign in</a>
+        </footer>
+    </div>
     </body>
 </html>

@@ -1,0 +1,274 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100%;
+    width: 100%;
+    align-items: stretch;
+    background: url("../../assets/image/background.png") no-repeat 0 0;
+    background-size: cover;
+}
+
+
+.wrapper {
+    margin-top: 4.5rem;
+    height: 100vh;
+    background-color: #f9faff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 24px 24px 0 0;
+}
+
+
+.main {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.header,
+.footer{
+    width: 16rem;
+}
+
+.header-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    margin-top: 2.3rem;
+    margin-bottom: 0;
+}
+
+.main-form__input_first-name   {
+    margin-top: 1.7rem;
+}
+
+.main-form__input input[type="text"],
+.main-form__input input[type="email"],
+.main-form__input input[type="password"] {
+    border: 1px solid #dce0ec;
+    box-sizing: border-box;
+    border-radius: 8px;
+    max-width: 16rem;
+    padding: 9px 26px 8px 47px;
+    font-size: 15px;
+    line-height: 140%;
+    font-weight: normal;
+    font-style: normal;
+    outline: none;
+    background-color: #f9faff;
+    color: #A1ABC9;
+    align-items: center;
+}
+
+.main-form__input input[type="text"]:focus,
+.main-form__input input[type="email"]:focus,
+.main-form__input input[type="password"]:focus {
+    border: 1px solid #7297ff;
+    background: #ffffff;
+}
+
+.main-form__input_last-name,
+.main-form__input_last-name,
+.main-form__input_email,
+.main-form__input_password,
+.main-form__input_confirm-password
+{
+    margin-top: 1.5rem;
+}
+
+.main-form__input_first-name,
+.main-form__input_last-name,
+.main-form__input_email,
+.main-form__input_password,
+.main-form__input_confirm-password{
+    position: relative;
+}
+
+.main-form__input-user-icon {
+    position: absolute;
+    top: 25%;
+    left: 7%;
+}
+
+.main-form__input-mail-icon {
+    position: absolute;
+    top: 30%;
+    left: 7%;
+}
+
+.main-form__input-password-icon {
+    position: absolute;
+    top: 25%;
+    left: 8%;
+}
+
+.main-form__input-check-icon {
+    position: absolute;
+    top: 36%;
+    left: 8%;
+}
+
+.main-form__input-password-visible-icon {
+    position: absolute;
+    right: 7%;
+    top: 23%;
+}
+
+.main-form__button {
+    position: relative;
+}
+
+.main-form__button-submit {
+    background-image: url("../../assets/svg/arrow-icon.svg");
+    background-repeat: no-repeat;
+    background-position: 80% 50%;
+    background-color: #7297FF;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 130%;
+
+    color: #FFFFFF;
+
+    border: none;
+    position: relative;
+
+    padding: 15px 49px 15px 16px;
+    margin-top: 2rem;
+
+}
+
+.footer-title {
+    margin: 0;
+    font-size: 15px;
+    line-height: 140%;
+
+    color: #A1ABC9;
+}
+
+.footer-link {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 130%;
+
+    color: #7297FF;
+}
+
+.footer {
+    padding-bottom: 4.7rem;
+}
+
+.main-forgot-link {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+
+    color: #7297FF;
+
+    display: block;
+    margin-top: 2rem;
+}
+
+.main-form__input-error-message {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 13px;
+    line-height: 120%;
+    letter-spacing: -0.24px;
+
+    color: #F6657F;
+}
+.main-form__input-error input[type="text"],
+.main-form__input-error input[type="email"],
+.main-form__input-error input[type="password"]{
+    border: 1px solid #FF2567;
+    border-radius: 8px;
+}
+
+
+.header-restore-password {
+    display: flex;
+    flex-direction: row;
+}
+
+.header-arrow {
+    margin-top: 2.1rem;
+    margin-right: 1rem;
+}
+
+.main-restore-password {
+    margin-top: 1.5rem;
+    font-size: 15px;
+    line-height: 130%;
+    max-width: 16rem;
+    color: #A1ABC9;
+}
+
+.main-form__button-submit-restore-password {
+    padding-right: 4rem;
+}
+
+.main-form__input_email-restore {
+    margin-left: 2rem;
+}
+
+.main__link {
+    font-size: 15px;
+    line-height: 130%;
+    text-decoration-line: underline;
+
+
+    color: #7297FF;
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        background-size: cover;
+        display: flex;
+        justify-content: end;
+    }
+    .wrapper {
+        margin-top: 0;
+        border-radius: 0;
+        width: 35rem;
+    }
+
+    .header,
+    .footer{
+        width: 32rem;
+        margin-left: 1.5rem;
+    }
+
+    .header-title {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 110%;
+    }
+
+    .main-form__button-submit {
+        padding: 16px 56px 16px 24px;
+    }
+
+    .main-form__input input[type="text"],
+    .main-form__input input[type="email"],
+    .main-form__input  input[type="password"] {
+        padding: 11px 213px 11px 64px;
+        font-size: 17px;
+        line-height: 24px;
+        max-width: none;
+    }
+
+    .main-restore-password-without-mail {
+        margin-right: 96px;
+    }
+
+    .main-restore-password {
+        max-width: 23rem;
+        margin-top: 2rem;
+        font-size: 15px;
+        line-height: 130%;
+    }
+}
