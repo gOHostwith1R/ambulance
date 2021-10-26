@@ -5,10 +5,13 @@ body {
     min-height: 100%;
     width: 100%;
     align-items: stretch;
-    background: url("../../assets/image/background.png") no-repeat 0 0;
+    background: url("../../../../assets/image/background.png") no-repeat 0 0;
     background-size: cover;
 }
 
+button:hover {
+    cursor: pointer;
+}
 
 .wrapper {
     margin-top: 4.5rem;
@@ -122,7 +125,7 @@ body {
 }
 
 .main-form__button-submit {
-    background-image: url("../../assets/svg/arrow-icon.svg");
+    background-image: url("../../../../assets/svg/arrow-icon.svg");
     background-repeat: no-repeat;
     background-position: 80% 50%;
     background-color: #7297FF;
@@ -195,7 +198,7 @@ body {
 }
 
 .header-arrow {
-    margin-top: 2.1rem;
+    margin-top: 2.3rem;
     margin-right: 1rem;
 }
 
