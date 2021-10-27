@@ -22,7 +22,7 @@ export default class extends AbstractView {
               <div class="main-form__input main-form__input_email">
                   <label>
                       <img src="../../../../../assets/svg/mail-icon.svg" alt="mail-icon" class="main-form__input-mail-icon">
-                      <input type="email" placeholder="Email">
+                      <input type="email" required placeholder="Email">
                   </label>
               </div>
                <a href="/restore-password" data-link>

@@ -16,19 +16,19 @@ export default class extends AbstractView {
           <div class="main-form__input main-form__input_email">
             <label>
               <img src="../../../../../assets/svg/mail-icon.svg" alt="mail-icon" class="main-form__input-mail-icon">
-              <input type="email" placeholder="Email">
+              <input type="email" required placeholder="Email">
             </label>
           </div>
           <div class="main-form__input main-form__input_password main-form__input-error">
             <label>
               <img src="../../../../../assets/svg/password-icon.svg" alt="password-icon" class="main-form__input-password-icon">
-              <input type="password" class="password" placeholder="Password">
+              <input type="password" class="password" minlength="6" placeholder="Password">
               <img src="../../../../../assets/svg/visible-password-icon.svg" alt="visible-password-icon" class="main-form__input-password-visible-icon">
             </label>
           </div>
           <span class="main-form__input-error-message">Password contain unsupported characters</span>
           <div class="main-form__button">
-            <button class="main-form__button-submit" type="button">Sign in</button>
+            <button class="main-form__button-submit" type="submit">Sign in</button>
           </div>
           <a href="/restore-password-email" data-link class="main-forgot-link">Forgot Password?</a>
         </form>
