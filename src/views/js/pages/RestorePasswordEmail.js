@@ -10,7 +10,7 @@ export default class extends AbstractView {
         return `
          <header class="header header-restore-password">
          <a href="/sign-up" data-link>
-          <img src="../../../../../assets/svg/arrow-left-gray.svg" alt="arrow-left" class="header-arrow">
+          <img src="../../../../assets/svg/arrow-left-gray.svg" alt="arrow-left" class="header-arrow">
           </a>
           <h2 class="header-title">Restore password</h2>
       </header>
@@ -21,7 +21,7 @@ export default class extends AbstractView {
               </div>
               <div class="main-form__input main-form__input_email">
                   <label>
-                      <img src="../../../../../assets/svg/mail-icon.svg" alt="mail-icon" class="main-form__input-mail-icon">
+                      <img src="../../../../assets/svg/mail-icon.svg" alt="mail-icon" class="main-form__input-mail-icon">
                       <input type="email" required placeholder="Email">
                   </label>
               </div>

@@ -10,7 +10,7 @@ export default class extends AbstractView {
         return `
         <header class="header header-restore-password">
         <a href="/sign-up" data-link>
-        <img src="../../../../../assets/svg/arrow-left-gray.svg" alt="arrow-left" class="header-arrow">
+        <img src="../../../../assets/svg/arrow-left-gray.svg" alt="arrow-left" class="header-arrow">
         </a>
         <h2 class="header-title">Restore password</h2>
     </header>

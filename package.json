@@ -2,7 +2,7 @@
   "name": "ambulance",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/views/static/js/index.js",
   "scripts": {
     "dev": "nodemon server.js"
   },
