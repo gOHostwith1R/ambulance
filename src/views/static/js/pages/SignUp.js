@@ -34,14 +34,14 @@ export default class extends AbstractView {
                <div class="main-form__input main-form__input_password">
                    <label>
                        <img src="../../../../../assets/svg/password-icon.svg" alt="password-icon" class="main-form__input-password-icon">
-                       <input type="password" required placeholder="Password">
+                       <input type="password" class="password" required placeholder="Password">
                        <img src="../../../../../assets/svg/visible-password-icon.svg" alt="visible-password-icon" class="main-form__input-password-visible-icon">
                    </label>
                </div>
-               <div class="main-form__input main-form__input_confirm-password">
+                   <div class="main-form__input main-form__input_password main-form__input_confirm-password">
                    <label>
                        <img src="../../../../../assets/svg/check-icon.svg" alt="check-icon" class="main-form__input-check-icon">
-                       <input type="password" required placeholder="Confirm Password">
+                       <input type="password" class="password" required placeholder="Confirm Password">
                        <img src="../../../../../assets/svg/visible-password-icon.svg" alt="visible-password-icon" class="main-form__input-password-visible-icon">
                    </label>
                </div>

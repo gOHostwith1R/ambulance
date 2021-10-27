@@ -120,6 +120,10 @@ button:hover {
     top: 23%;
 }
 
+.main-form__input-password-visible-icon:hover {
+    cursor: pointer;
+}
+
 .main-form__button {
     position: relative;
 }
@@ -238,6 +242,8 @@ button:hover {
         border-radius: 0;
         width: 35rem;
     }
+
+
 
     .header,
     .footer{

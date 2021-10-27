@@ -3,8 +3,6 @@ import SignIn from "./pages/SignIn.js";
 import RestorePassword from "./pages/RestorePassword.js";
 import RestorePasswordEmail from "./pages/RestorePasswordEmail.js";
 
-
-
 const navigateTo = url => {
     history.pushState(null, null, url);
     router();
@@ -37,6 +35,23 @@ const router = async () => {
     const view = new match.route.view();
     document.querySelector(".wrapper").innerHTML = await view.getHtml();
 
+    const visiblePassword = document.querySelectorAll(".main-form__input-password-visible-icon");
+    const inputPassword = document.querySelectorAll(".password");
+    visiblePassword.forEach((elem) => {
+        elem.addEventListener('click', () => {
+            inputPassword.forEach((input) => {
+                input.classList.toggle('password');
+                input.classList.toggle('text');
+
+                if(input.classList.contains('text')) {
+                    input.type = 'text';
+                }
+                else {
+                    input.type = 'password';
+                }
+            })
+        })
+    })
 };
 
 window.addEventListener("popstate", router);
@@ -47,6 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             navigateTo(e.target.href)
         }
-    })
+
+    });
+
     router();
 })
