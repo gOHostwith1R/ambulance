@@ -10,10 +10,10 @@ const navigateTo = url => {
 
 const router = async () => {
     const routes = [
-        { path: '/', view: SignUp },
+        { path: '/sign-up', view: SignUp },
         { path: '/sign-in', view: SignIn},
+        { path: '/restore-password', view: RestorePassword},
         { path: '/restore-password-email', view: RestorePasswordEmail},
-        { path: '/restore-password', view: RestorePassword}
     ];
 
     const potentialMatches = routes.map(route => {
