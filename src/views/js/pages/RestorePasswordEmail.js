@@ -8,6 +8,7 @@ export default class extends AbstractView {
 
     async getHtml () {
         return `
+        <div class="wrapper">
          <header class="header header-restore-password">
          <a href="/sign-up" data-link>
           <img src="../../../../assets/svg/arrow-left-gray.svg" alt="arrow-left" class="header-arrow">
@@ -32,6 +33,7 @@ export default class extends AbstractView {
               </a>
           </form>
       </main>
+      </div>
         `
     }
 }

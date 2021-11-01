@@ -8,6 +8,7 @@ export default class extends AbstractView {
 
     async getHtml () {
         return `
+        <div class="wrapper">
          <header class="header">
         <h2 class="header-title">Sign In</h2>
       </header>
@@ -37,6 +38,7 @@ export default class extends AbstractView {
         <p class="footer-title">Don't have an account?</p>
         <a class="footer-link" data-link href="/sign-up">Sign up</a>
       </footer>
+      </div>
         `
     }
 }

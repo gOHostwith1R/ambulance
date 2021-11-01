@@ -2,6 +2,7 @@ import SignUp from "./pages/SignUp.js";
 import SignIn from "./pages/SignIn.js";
 import RestorePassword from "./pages/RestorePassword.js";
 import RestorePasswordEmail from "./pages/RestorePasswordEmail.js";
+import Patients from "./pages/Patients.js";
 
 const navigateTo = url => {
     history.pushState(null, null, url);
@@ -15,6 +16,7 @@ const router = async () => {
         { path: '/sign-in', view: SignIn},
         { path: '/restore-password', view: RestorePassword},
         { path: '/restore-password-email', view: RestorePasswordEmail},
+        { path: '/patients', view: Patients},
     ];
 
     const potentialMatches = routes.map(route => {
@@ -34,10 +36,16 @@ const router = async () => {
     }
 
     const view = new match.route.view();
-    document.querySelector(".wrapper").innerHTML = await view.getHtml();
+    document.querySelector("#root").innerHTML = await view.getHtml();
 
     const visiblePassword = document.querySelectorAll(".main-form__input-password-visible-icon");
     const inputPassword = document.querySelectorAll(".password");
+    const body = document.getElementsByTagName('body');
+    if(match.route.path === '/patients') {
+        body[0].classList.add('patients');
+    } else {
+        body[0].classList.add('auth');
+    }
     visiblePassword.forEach((elem) => {
         elem.addEventListener('click', () => {
             inputPassword.forEach((input) => {
