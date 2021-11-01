@@ -29,6 +29,7 @@ export default class extends AbstractView {
                 </div>
                 <div class="main-patient__header">
                     <h2 class="main-patient__title">My Patients</h2>
+                    ${this.empty ? `
                     <div class="main-patient__header-icon">
                         <div class="main-patient__header-search">
                             <img src="../../../../assets/svg/search.svg" alt="search" class="main-patient__search-icon">
@@ -49,7 +50,7 @@ export default class extends AbstractView {
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> ` : `<div></div>` }
                 </div>
                 ${this.empty ? `
                 <div class="container-patient">
@@ -239,7 +240,10 @@ export default class extends AbstractView {
                     </div>
                 </div>`
             :
-                `<h1>Empty</h1>`
+                `<div class="empty-patients">
+                     <img src="../../../../assets/svg/medical-history-icon.svg" alt="medical-history">
+                     <p class="empty-patients__text">You have no patients yet. To create a patient profile, please contact your administrator.</p>
+                </div>`
             }
             </main> 
         </div>    
