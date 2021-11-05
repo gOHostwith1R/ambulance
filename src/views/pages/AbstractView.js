@@ -1,4 +1,4 @@
-export default class {
+export default class AbstractView{
     constructor() {
     }
 
@@ -6,7 +6,7 @@ export default class {
         document.title = title;
     }
 
-    async getHtml() {
+    getHtml() {
         return "";
     }
 }
