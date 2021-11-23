@@ -25,16 +25,18 @@ import { CardHeaderStyled } from '../../features/Main/Card/card.styled';
 import SettingsIcon from '../../assets/svg/more-vertical.svg';
 import TimeIcon from '../../assets/svg/clock.svg';
 import HeartIcon from '../../assets/svg/heart.svg';
+import { DICTIONARY } from '../../core/consts/dictionary';
 
 const AppointmentsPage = () => {
   const { width } = useWindowSize();
+  document.title = DICTIONARY.pageName.appointments;
   return (
     <PageWrapper>
       <MainHeader>
         <HeaderUser>
           <UserInfo>
             <Title variant="h3">Larry Prinston</Title>
-            <Paragraph variant="caption" textAlign="end" color="#A1ABC9">Patient</Paragraph>
+            <Paragraph variant="caption" textAlign="end" color="#A1ABC9">{DICTIONARY.roles.patient}</Paragraph>
           </UserInfo>
           <img src={Avatar} alt="avatar" />
           <Indicator variant="withBorder" status="confirmed" />
@@ -44,10 +46,10 @@ const AppointmentsPage = () => {
         <ContentWrapper>
           <ButtonWrapper>
             <Link to="/patients">
-              <Button variant="contained" color="light" group="main">Profile</Button>
+              <Button variant="contained" color="light" group="main">{DICTIONARY.pageName.profile}</Button>
             </Link>
-            <Button variant="contained" color="primary" group="main">Appointments</Button>
-            <Button variant="contained" color="light" group="main" display="768px">Resolutions</Button>
+            <Button variant="contained" color="primary" group="main">{DICTIONARY.pageName.appointments}</Button>
+            <Button variant="contained" color="light" group="main" display="768px">{DICTIONARY.pageName.resolutions}</Button>
           </ButtonWrapper>
           <ContentHeader>
             <Title variant="h2">My Appointments</Title>
@@ -61,8 +63,7 @@ const AppointmentsPage = () => {
                 {width < 1024 ? <img src={PlusBlue} alt="plus" />
                   : (
                     <Button variant="contained" color="primary" group="main" startIcon={Plus}>
-                      Create an
-                      appointment
+                      {DICTIONARY.createAppointment.createAppointment}
                     </Button>
                   )}
               </Link>

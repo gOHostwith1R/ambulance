@@ -15,6 +15,7 @@ import { EMAIL, PASSWORD } from '../../../core/consts/validation';
 import Arrow from '../../../assets/svg/arrow-icon.svg';
 import Title from '../../../components/Title';
 import LinkToPage from '../../../components/LinkToPage';
+import { DICTIONARY } from '../../../core/consts/dictionary';
 
 const FormSignIn = () => {
   const { type, setTypePassword } = useSetVisiblePassword();
@@ -25,7 +26,7 @@ const FormSignIn = () => {
       <Title variant="h1" margin="0 0 40px 0">Sign in</Title>
       <InputWrapper>
         <Input
-          placeholder="Email"
+          placeholder={DICTIONARY.authForm.email}
           type="email"
           icon={emailIcon}
           name="email"
@@ -35,7 +36,7 @@ const FormSignIn = () => {
       </InputWrapper>
       <InputWrapper>
         <Input
-          placeholder="Password"
+          placeholder={DICTIONARY.authForm.password}
           type={type}
           icon={passwordIcon}
           name="password"
@@ -47,10 +48,10 @@ const FormSignIn = () => {
           setTypePassword={setTypePassword}
         />
       </InputWrapper>
-      <Button variant="contained" color="primary" group="auth" endIcon={Arrow} pos="80% 50%">Sign In</Button>
+      <Button variant="contained" color="primary" group="auth" endIcon={Arrow} pos="80% 50%">{DICTIONARY.authForm.signIn}</Button>
       <Link to="/restore-password-email">
         <LinkToPage variant="auth" margin="32px 0 0 0" display="inline-block">
-          Forgot Password?
+          {DICTIONARY.authForm.forgotPassword}
         </LinkToPage>
       </Link>
     </FormStyled>

@@ -15,6 +15,7 @@ import SpanError from '../../../components/SpanError';
 import Arrow from '../../../assets/svg/arrow-icon.svg';
 import { FIRSTLASTNAME, EMAIL, PASSWORD } from '../../../core/consts/validation';
 import Title from '../../../components/Title';
+import { DICTIONARY } from '../../../core/consts/dictionary';
 
 const FormSignUp = () => {
   const { type, setTypePassword } = useSetVisiblePassword();
@@ -25,7 +26,7 @@ const FormSignUp = () => {
       <Title variant="h1" margin="0 0 40px">Sign up</Title>
       <InputWrapper>
         <Input
-          placeholder="First Name"
+          placeholder={DICTIONARY.authForm.firstName}
           type="text"
           icon={userIcon}
           name="firstName"
@@ -35,7 +36,7 @@ const FormSignUp = () => {
       </InputWrapper>
       <InputWrapper>
         <Input
-          placeholder="Last Name"
+          placeholder={DICTIONARY.authForm.lastName}
           type="text"
           icon={userIcon}
           name="lastName"
@@ -45,7 +46,7 @@ const FormSignUp = () => {
       </InputWrapper>
       <InputWrapper>
         <Input
-          placeholder="Email"
+          placeholder={DICTIONARY.authForm.email}
           type="email"
           icon={emailIcon}
           name="email"
@@ -55,7 +56,7 @@ const FormSignUp = () => {
       </InputWrapper>
       <InputWrapper>
         <Input
-          placeholder="Password"
+          placeholder={DICTIONARY.authForm.restorePassword}
           type={type}
           icon={passwordIcon}
           name="password"
@@ -69,7 +70,7 @@ const FormSignUp = () => {
       </InputWrapper>
       <InputWrapper>
         <Input
-          placeholder="Confirm password"
+          placeholder={DICTIONARY.authForm.confirmPassword}
           type={type}
           icon={checkIcon}
           name="confirmPassword"
@@ -81,7 +82,7 @@ const FormSignUp = () => {
         />
       </InputWrapper>
       <Button variant="contained" color="primary" group="auth" endIcon={Arrow} pos="80% 50%">
-        Sign up
+        {DICTIONARY.authForm.signUp}
       </Button>
     </FormStyled>
   );

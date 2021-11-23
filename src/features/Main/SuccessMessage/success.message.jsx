@@ -6,7 +6,7 @@ import Image from '../../../components/Image';
 import Paragraph from '../../../components/Paragraph';
 
 const SuccessMessage = () => {
-  const [visibility, setVisibility] = useState(true);
+  const [visibility, setVisibility] = useState(false);
   const handleClick = () => {
     setVisibility(!visibility);
   };

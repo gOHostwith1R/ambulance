@@ -13,6 +13,7 @@ import arrowLeftIcon from '../../../assets/svg/arrow-left-gray.svg';
 import Title from '../../../components/Title';
 import FlexContainer from '../../../components/FlexContainer';
 import Paragraph from '../../../components/Paragraph';
+import { DICTIONARY } from '../../../core/consts/dictionary';
 
 const FormRestorePasswordEmail = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -24,15 +25,15 @@ const FormRestorePasswordEmail = () => {
           <img src={arrowLeftIcon} alt="arrow-left" />
         </Link>
         <Title variant="h1">
-          Restore Password
+          {DICTIONARY.authForm.restorePassword}
         </Title>
       </FlexContainer>
       <Paragraph variant="plain-2" font="regular" margin="0 0 40px 0" color="#A1ABC9">
-        Please use your email address, and we’ll send you the link to reset your password
+        {DICTIONARY.authForm.restorePasswordText}
       </Paragraph>
       <InputWrapper>
         <Input
-          placeholder="Email"
+          placeholder={DICTIONARY.authForm.email}
           type="email"
           icon={emailIcon}
           name="email"
@@ -41,7 +42,7 @@ const FormRestorePasswordEmail = () => {
         {errors.email && <SpanError variant="auth">Email contains unsupported characters</SpanError>}
       </InputWrapper>
       <Link to="/restore-message">
-        <Button variant="contained" color="primary" group="auth" endIcon={Arrow} pos="80% 50%">Send Reset Link</Button>
+        <Button variant="contained" color="primary" group="auth" endIcon={Arrow} pos="80% 50%">{DICTIONARY.authForm.sentResetLink}</Button>
       </Link>
     </FormStyled>
   );

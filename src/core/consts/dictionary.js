@@ -15,6 +15,7 @@ export const DICTIONARY = {
     dontHaveAccount: 'Don’t have an account?',
     restorePassword: 'Restore Password',
     restorePasswordText: 'Please use your email address, and we’ll send you the link to reset your password',
+    restoredPasswordText: 'Check your inbox, and click the reset link provided.',
     sentResetLink: 'Send Reset Link',
     forgotPassword: 'Forgot password?',
   },

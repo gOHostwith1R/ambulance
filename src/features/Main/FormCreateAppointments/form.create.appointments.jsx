@@ -25,7 +25,9 @@ const FormCreateAppointments = () => {
   const {
     register, handleSubmit, control, formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   const optionsOccupation = DOCTORS.map((item) => ({
     value: item,
@@ -73,7 +75,7 @@ const FormCreateAppointments = () => {
         <FlexContainer direction="column" gap="40px" alignItems="flex-start" position="relative">
           <FlexContainer gap="16px">
             <NumberCircle>1</NumberCircle>
-            <Paragraph variant="plain-1" font="regular">Choose a day for an appointment</Paragraph>
+            <Paragraph variant="plain-1" font="regular">{DICTIONARY.createAppointment.selectDay}</Paragraph>
           </FlexContainer>
           <Controller
             name="calendar"
@@ -88,12 +90,12 @@ const FormCreateAppointments = () => {
               />
             )}
           />
-          {errors.calendar && <SpanError variant="calendar">Choose a day for an appointment</SpanError>}
+          {errors.calendar && <SpanError variant="calendar">{DICTIONARY.createAppointment.selectDay}</SpanError>}
         </FlexContainer>
         <FlexContainer direction="column" gap="40px" alignItems="flex-start">
           <FlexContainer gap="16px">
             <NumberCircle>2</NumberCircle>
-            <Paragraph variant="plain-1" font="regular">Select an available timeslot</Paragraph>
+            <Paragraph variant="plain-1" font="regular">{DICTIONARY.createAppointment.selectTime}</Paragraph>
           </FlexContainer>
           <GridContainer variant="timeSlot" gap="16px">
             {TIME_SLOT.map((elem) => (
@@ -116,15 +118,14 @@ const FormCreateAppointments = () => {
                 )}
               />
             ))}
-            {errors.timeSlot && <SpanError variant="calendar">Select an available timeslot</SpanError>}
+            {errors.timeSlot && <SpanError variant="calendar">{DICTIONARY.createAppointment.selectTime}</SpanError>}
           </GridContainer>
         </FlexContainer>
         <FlexContainer direction="column" gap="32px" alignItems="flex-start">
           <FlexContainer gap="16px">
             <NumberCircle>3</NumberCircle>
             <Paragraph variant="plain-1" font="regular">
-              Select a doctor and define the reason of your
-              visit
+              {DICTIONARY.createAppointment.selectDoctor}
             </Paragraph>
           </FlexContainer>
           <FlexContainer gap="40px" direction="column" alignItems="flex-start">
