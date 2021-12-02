@@ -47,4 +47,7 @@ export const DICTIONARY = {
     visitReason: 'Indicate the reason of your visit',
     note: 'Leave a note if needed',
   },
+  dropdownTime: [' Upcoming', 'Later', 'Now'],
+  dropdownSortPatients: [' Date', 'Name', 'Status' +
+  ''],
 };

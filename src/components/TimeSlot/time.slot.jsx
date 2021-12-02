@@ -6,7 +6,7 @@ const TimeSlot = ({
 }) => (
   <TimeSlotStyled
     id={id}
-    disabled={status === 'disabled' && 'disabled'}
+    disabled={status === 'disabled'}
     status={status}
     onClick={onClick}
     active={id && 'active'}

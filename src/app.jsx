@@ -1,6 +1,8 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
 import useRoutes from './core/controller/routes';
 
 const Global = createGlobalStyle`
@@ -14,13 +16,15 @@ const Global = createGlobalStyle`
 `;
 
 const App = () => {
-  const routes = useRoutes();
+  const router = useRoutes();
   return (
     <>
-      <Global />
-      <Router>
-        {routes}
-      </Router>
+      <Provider store={store}>
+        <Global />
+        <Router>
+          {router}
+        </Router>
+      </Provider>
     </>
   );
 };

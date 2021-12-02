@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import MainAuth from '../../features/Auth/MainAuth';
-import MainWrapper from '../../features/Auth/MainWrapper';
-import FormSignUp from '../../features/Auth/FormSignUp';
-import Footer from '../../features/Auth/Footer';
-import Paragraph from '../../components/Paragraph';
-import LinkToPage from '../../components/LinkToPage';
-import { DICTIONARY } from '../../core/consts/dictionary';
+import { useTitle } from 'react-use';
+import MainAuth from '../MainAuth';
+import MainWrapper from '../MainWrapper';
+import FormSignUp from '../FormSignUp';
+import Footer from '../../../components/Footer';
+import Paragraph from '../../../components/Paragraph';
+import LinkToPage from '../../../components/LinkToPage';
+import { DICTIONARY } from '../../../core/consts/dictionary';
 
 const SignUp = () => {
-  document.title = DICTIONARY.authForm.signUp;
+  useTitle(DICTIONARY.authForm.signUp);
   return (
     <MainAuth>
       <MainWrapper>

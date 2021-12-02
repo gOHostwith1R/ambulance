@@ -1,5 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { getUserProfile, signUpUser } from '../../../store/slices/userSlice';
 import { FormStyled } from '../../../components/Form/form.styled';
 import useSetVisiblePassword from '../../../core/hooks/useSetVisiblePassword';
 import Input from '../../../components/Input';
@@ -18,9 +20,14 @@ import Title from '../../../components/Title';
 import { DICTIONARY } from '../../../core/consts/dictionary';
 
 const FormSignUp = () => {
+  const dispatch = useDispatch();
   const { type, setTypePassword } = useSetVisiblePassword();
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    await dispatch(signUpUser(data));
+    await dispatch(getUserProfile());
+  };
+
   return (
     <FormStyled onSubmit={handleSubmit(onSubmit)}>
       <Title variant="h1" margin="0 0 40px">Sign up</Title>
@@ -49,8 +56,8 @@ const FormSignUp = () => {
           placeholder={DICTIONARY.authForm.email}
           type="email"
           icon={emailIcon}
-          name="email"
-          {...register('email', { required: true, minLength: 1, pattern: EMAIL })}
+          name="userName"
+          {...register('userName', { required: true, minLength: 1, pattern: EMAIL })}
         />
         {errors.email && <SpanError variant="auth">Email contains unsupported characters</SpanError>}
       </InputWrapper>

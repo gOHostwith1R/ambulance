@@ -1,14 +1,14 @@
 import styled, { css } from 'styled-components';
 
-export const TitleStyled = styled.h1`
+export const TitleStyled = styled.div`
   font-style: normal;
   font-weight: 600;
   color: #202225;
   text-overflow: ellipsis;
   margin: ${(props) => props.margin || '0'};
   ${(props) => props.variant === 'h1' && css`
-    font-size: 24px;
     line-height: 36px;
+    font-size: 24px;
     @media(max-width: 768px) {
       font-size: 20px;
       line-height: 24px;

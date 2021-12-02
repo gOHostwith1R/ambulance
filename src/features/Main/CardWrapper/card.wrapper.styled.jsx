@@ -7,7 +7,6 @@ export const CardWrapperStyled = styled.div`
   gap: 20px;
   padding: 0 32px 0 0;
   overflow: auto;
-  justify-content: space-between;
   @media(max-width: 768px) {
     padding: 0;
   }

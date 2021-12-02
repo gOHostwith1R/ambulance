@@ -6,7 +6,6 @@ export const CardStyled = styled.div`
   width: 400px;
   @media(max-width: 1056px) {
     max-width: none;
-    width: auto;
     flex-grow: 1;
   }
 `;

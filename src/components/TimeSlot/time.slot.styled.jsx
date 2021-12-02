@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const TimeSlotStyled = styled.button`
+  font-family: 'Poppins', sans-serif;
   cursor: pointer; 
   border: none;
   padding: 8px 16px;

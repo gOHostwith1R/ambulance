@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { FormStyled } from '../../../components/Form/form.styled';
 import useSetVisiblePassword from '../../../core/hooks/useSetVisiblePassword';
 import Input from '../../../components/Input';
@@ -16,11 +17,17 @@ import Arrow from '../../../assets/svg/arrow-icon.svg';
 import Title from '../../../components/Title';
 import LinkToPage from '../../../components/LinkToPage';
 import { DICTIONARY } from '../../../core/consts/dictionary';
+import { getUserProfile, signInUser } from '../../../store/slices/userSlice';
 
 const FormSignIn = () => {
+  const dispatch = useDispatch();
   const { type, setTypePassword } = useSetVisiblePassword();
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    await dispatch(signInUser(data));
+    await dispatch(getUserProfile());
+  };
+
   return (
     <FormStyled onSubmit={handleSubmit(onSubmit)}>
       <Title variant="h1" margin="0 0 40px 0">Sign in</Title>
@@ -29,8 +36,8 @@ const FormSignIn = () => {
           placeholder={DICTIONARY.authForm.email}
           type="email"
           icon={emailIcon}
-          name="email"
-          {...register('email', { required: true, minLength: 1, pattern: EMAIL })}
+          name="userName"
+          {...register('userName', { required: true, minLength: 1, pattern: EMAIL })}
         />
         {errors.email && <SpanError variant="auth">Email contains unsupported characters</SpanError>}
       </InputWrapper>

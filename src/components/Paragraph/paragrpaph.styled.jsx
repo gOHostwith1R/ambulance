@@ -46,4 +46,8 @@ export const ParagraphStyled = styled.p`
   ${(props) => props.group === 'link' && css`
     cursor: pointer;
   `};
+
+  ${(props) => props.color === 'waiting' && css`
+    cursor: pointer;
+  `};
 `;

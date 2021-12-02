@@ -1,6 +1,6 @@
 export const TIME_SLOT = [
   {
-    time: '12:00 am',
+    time: '12:00 pm',
     status: 'inactive',
     id: 1,
   },
@@ -32,15 +32,15 @@ export const TIME_SLOT = [
     id: 7,
   },
   {
-    time: '7:00 am',
+    time: '7:00 pm',
     status: 'inactive',
     id: 8,
   }, {
-    time: '8:00 am',
+    time: '8:00 pm',
     status: 'inactive',
     id: 9,
   }, {
-    time: '9:00 am',
+    time: '9:00 pm',
     status: 'inactive',
     id: 10,
   },

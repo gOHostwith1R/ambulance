@@ -1,38 +1,66 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import SignUp from '../../Pages/authPages/SignUp';
-import SignIn from '../../Pages/authPages/SignIn';
-import RestorePasswordEmail from '../../Pages/authPages/RestorePasswordEmail';
-import RestoreMessage from '../../Pages/authPages/RestoreMessage';
+import { useSelector } from 'react-redux';
+import SignUp from '../../features/Auth/pages/SignUp';
+import SignIn from '../../features/Auth/pages/SignIn';
+import RestorePasswordEmail from '../../features/Auth/pages/RestorePasswordEmail';
+import RestoreMessage from '../../features/Auth/pages/RestoreMessage';
 import PatientsPage from '../../Pages/mainPages/PatientsPage';
 import AppointmentsPage from '../../Pages/mainPages/AppointmentsPage';
 import MakeAppointmentsPage from '../../Pages/mainPages/MakeAppointment';
+import { userSelector } from '../../store/slices/userSlice';
 
-const useRoutes = () => (
-  <Switch>
-    <Route path="/sign-up">
-      <SignUp />
-    </Route>
-    <Route path="/sign-in">
-      <SignIn />
-    </Route>
-    <Route path="/restore-password-email">
-      <RestorePasswordEmail />
-    </Route>
-    <Route path="/restore-message">
-      <RestoreMessage />
-    </Route>
-    <Route path="/patients">
-      <PatientsPage />
-    </Route>
-    <Route path="/appointments">
-      <AppointmentsPage />
-    </Route>
-    <Route path="/make-appointments">
-      <MakeAppointmentsPage />
-    </Route>
-    <Redirect to="/sign-up" />
-  </Switch>
-);
+// eslint-disable-next-line consistent-return
+const useRoutes = () => {
+  const { auth, userProfile } = useSelector(userSelector);
+  console.log(userProfile);
+  if (!auth) {
+    return (
+      <Switch>
+        <Route path="/sign-up">
+          <SignUp />
+        </Route>
+        <Route path="/sign-in">
+          <SignIn />
+        </Route>
+        <Route path="/restore-password-email">
+          <RestorePasswordEmail />
+        </Route>
+        <Route path="/restore-message">
+          <RestoreMessage />
+        </Route>
+        <Redirect to="/sign-up" />
+      </Switch>
+    );
+  }
+  const role = localStorage.getItem('role');
+  if (role === 'Patient') {
+    return (
+      <Switch>
+        <Route exact path="/appointments">
+          <AppointmentsPage />
+        </Route>
+        <Route path="/appointments/make">
+          <MakeAppointmentsPage />
+        </Route>
+        <Redirect to="/appointments" />
+      </Switch>
+    );
+  }
+  return (
+    <Switch>
+      <Route path="/patients">
+        <PatientsPage />
+      </Route>
+      <Route exact path="/appointments">
+        <AppointmentsPage />
+      </Route>
+      <Route path="/appointments/make">
+        <MakeAppointmentsPage />
+      </Route>
+      <Redirect to="/patients" />
+    </Switch>
+  );
+};
 
 export default useRoutes;
