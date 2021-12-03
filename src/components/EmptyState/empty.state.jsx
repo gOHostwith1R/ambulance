@@ -1,7 +1,7 @@
 import React from 'react';
 import { EmptyStateStyled } from './empty.state.styled';
-import EmptyIcon from '../../../assets/svg/medical-history-icon.svg';
-import Paragraph from '../../../components/Paragraph';
+import EmptyIcon from '../../assets/svg/medical-history-icon.svg';
+import Paragraph from '../Paragraph';
 
 const EmptyState = () => (
   <EmptyStateStyled>

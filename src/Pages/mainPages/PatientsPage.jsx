@@ -82,7 +82,7 @@ const PatientsPage = () => {
                     <FlexContainer gap="16px">
                       <Avatar variant="card" src={patient.photo} alt="avatar" />
                       <FlexContainer direction="column" alignItems="flex-start">
-                        <Title variant="h3" level={3}>`${patient.first_name} ${patient.last_name}`</Title>
+                        <Title variant="h3" level={3}>{`${patient.first_name} ${patient.last_name}`}</Title>
                         <FlexContainer gap="8px">
                           <Indicator status={item.status} />
                           <Paragraph variant="caption" color="#A1ABC9">{`Appointment is ${item.status}`}</Paragraph>

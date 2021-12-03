@@ -6,5 +6,6 @@ export const MainWrapperStyled = styled.main`
   height: calc(100vh - 128px);
   @media(max-width: 768px) {
     padding: 0;
+    height: calc(100vh - 80px);
   }
 `;
