@@ -28,19 +28,24 @@ import Card from '../../features/Main/Card';
 import { DICTIONARY } from '../../core/consts/dictionary';
 import { appointmentSelector, getListOfAppointmentsDoctor, setStatus } from '../../store/slices/appointmentSlice';
 import CustomLoader from '../../components/Loader';
-import { getUserProfile, userSelector } from '../../store/slices/userSlice';
+import { getRefreshToken, getUserProfile, userSelector } from '../../store/slices/userSlice';
 import formatISOtoUTC from '../../helpers/formatISOtoUTC';
 
 const PatientsPage = () => {
   useTitle(DICTIONARY.pageName.patients);
   const dispatch = useDispatch();
   const { listOfAppointments, statusForDoctor } = useSelector(appointmentSelector);
-  const { userProfile } = useSelector(userSelector);
+  const { userProfile, error } = useSelector(userSelector);
   useEffect(() => {
     dispatch(setStatus());
     dispatch(getListOfAppointmentsDoctor());
     dispatch(getUserProfile());
   }, []);
+
+  useEffect(() => {
+    dispatch(getRefreshToken());
+  }, [error]);
+
   return (
     <PageWrapper>
       <MainHeader>
