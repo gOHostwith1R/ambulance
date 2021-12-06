@@ -105,62 +105,9 @@ const FormCreateAppointments = () => {
       {status === 'loading' ? <CustomLoader />
         : (
           <FormCreateAppointmentsStyled>
-            <FlexContainer direction="column" gap="40px" alignItems="flex-start" position="relative">
-              <FlexContainer gap="16px">
-                <NumberCircle>1</NumberCircle>
-                <Paragraph variant="plain-1" font="regular">{DICTIONARY.createAppointment.selectDay}</Paragraph>
-              </FlexContainer>
-              <Controller
-                name="date"
-                control={control}
-                rules={{ required: true }}
-                render={({ value, field }) => (
-                  <CalendarComponent
-                    value={value}
-                    onChange={(e) => {
-                      field.onChange(e);
-                      handleDay(e);
-                    }}
-                  />
-                )}
-              />
-              {errors.calendar
-                    && <SpanError variant="date">{DICTIONARY.createAppointment.selectDay}</SpanError>}
-            </FlexContainer>
-            <FlexContainer direction="column" gap="40px" alignItems="flex-start">
-              <FlexContainer gap="16px">
-                <NumberCircle>2</NumberCircle>
-                <Paragraph variant="plain-1" font="regular">{DICTIONARY.createAppointment.selectTime}</Paragraph>
-              </FlexContainer>
-              <GridContainer variant="timeSlot" gap="16px">
-                {TIME_SLOT.map((elem) => (
-                  <Controller
-                    name="timeSlot"
-                    control={control}
-                    key={elem.id}
-                    rules={{ required: true }}
-                    render={({ field }) => (
-                      <TimeSlot
-                        id={isActiveTimeSlot === elem.id ? isActiveTimeSlot : undefined}
-                        status={elem.status}
-                        time={elem.time}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleIsActive(elem.id);
-                          field.onChange(elem.time);
-                          handleTimeSlot(elem.time);
-                        }}
-                      />
-                    )}
-                  />
-                ))}
-                {errors.timeSlot
-                      && <SpanError variant="calendar">{DICTIONARY.createAppointment.selectTime}</SpanError>}
-              </GridContainer>
-            </FlexContainer>
             <FlexContainer direction="column" gap="32px" alignItems="flex-start">
               <FlexContainer gap="16px">
-                <NumberCircle>3</NumberCircle>
+                <NumberCircle>1</NumberCircle>
                 <Paragraph variant="plain-1" font="regular">
                   {DICTIONARY.createAppointment.selectDoctor}
                 </Paragraph>
@@ -191,7 +138,7 @@ const FormCreateAppointments = () => {
                     )}
                   />
                   {errors.occupation
-                        && <SpanError variant="auth">{DICTIONARY.createAppointmentPlaceholder.occupation}</SpanError>}
+                  && <SpanError variant="auth">{DICTIONARY.createAppointmentPlaceholder.occupation}</SpanError>}
                 </FlexContainer>
                 <FlexContainer gap="16px" direction="column" alignItems="flex-start" position="relative">
                   <Paragraph
@@ -218,7 +165,7 @@ const FormCreateAppointments = () => {
                     )}
                   />
                   {errors.doctorID
-                        && <SpanError variant="auth">{DICTIONARY.createAppointmentPlaceholder.doctorsName}</SpanError>}
+                  && <SpanError variant="auth">{DICTIONARY.createAppointmentPlaceholder.doctorsName}</SpanError>}
                 </FlexContainer>
                 <FlexContainer gap="16px" direction="column" alignItems="flex-start" position="relative">
                   <Paragraph
@@ -235,7 +182,7 @@ const FormCreateAppointments = () => {
                     {...register('reason', { required: true, minLength: 1 })}
                   />
                   {errors.visitReason
-                        && <SpanError variant="auth">{DICTIONARY.createAppointmentLabels.visitReason}</SpanError>}
+                  && <SpanError variant="auth">{DICTIONARY.createAppointmentLabels.visitReason}</SpanError>}
                 </FlexContainer>
                 <FlexContainer gap="16px" direction="column" alignItems="flex-start">
                   <Paragraph
@@ -257,11 +204,63 @@ const FormCreateAppointments = () => {
                   variant="contained"
                   color="primary"
                   group="main"
-                  style={{ alignSelf: 'flex-end' }}
                 >
                   Submit
                 </Button>
               </FlexContainer>
+            </FlexContainer>
+            <FlexContainer direction="column" gap="40px" alignItems="flex-start" position="relative">
+              <FlexContainer gap="16px">
+                <NumberCircle>2</NumberCircle>
+                <Paragraph variant="plain-1" font="regular">{DICTIONARY.createAppointment.selectDay}</Paragraph>
+              </FlexContainer>
+              <Controller
+                name="date"
+                control={control}
+                rules={{ required: true }}
+                render={({ value, field }) => (
+                  <CalendarComponent
+                    value={value}
+                    onChange={(e) => {
+                      field.onChange(e);
+                      handleDay(e);
+                    }}
+                  />
+                )}
+              />
+              {errors.calendar
+                    && <SpanError variant="date">{DICTIONARY.createAppointment.selectDay}</SpanError>}
+            </FlexContainer>
+            <FlexContainer direction="column" gap="40px" alignItems="flex-start">
+              <FlexContainer gap="16px">
+                <NumberCircle>3</NumberCircle>
+                <Paragraph variant="plain-1" font="regular">{DICTIONARY.createAppointment.selectTime}</Paragraph>
+              </FlexContainer>
+              <GridContainer variant="timeSlot" gap="16px">
+                {TIME_SLOT.map((elem) => (
+                  <Controller
+                    name="timeSlot"
+                    control={control}
+                    key={elem.id}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                      <TimeSlot
+                        id={isActiveTimeSlot === elem.id ? isActiveTimeSlot : undefined}
+                        status={elem.status}
+                        time={elem.time}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleIsActive(elem.id);
+                          field.onChange(elem.time);
+                          handleTimeSlot(elem.time);
+                        }}
+                      />
+                    )}
+                  />
+                ))}
+                {errors.timeSlot
+                      && <SpanError variant="calendar">{DICTIONARY.createAppointment.selectTime}</SpanError>}
+              </GridContainer>
             </FlexContainer>
           </FormCreateAppointmentsStyled>
         )}

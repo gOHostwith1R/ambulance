@@ -1,7 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { FormStyled } from '../../../components/Form/form.styled';
 import useSetVisiblePassword from '../../../core/hooks/useSetVisiblePassword';
 import Input from '../../../components/Input';
@@ -17,19 +16,13 @@ import Arrow from '../../../assets/svg/arrow-icon.svg';
 import Title from '../../../components/Title';
 import LinkToPage from '../../../components/LinkToPage';
 import { DICTIONARY } from '../../../core/consts/dictionary';
-import { getUserProfile, signInUser } from '../../../store/slices/userSlice';
 
-const FormSignIn = () => {
-  const dispatch = useDispatch();
+const FormSignIn = ({ onSubmit }) => {
   const { type, setTypePassword } = useSetVisiblePassword();
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = async (data) => {
-    await dispatch(signInUser(data));
-    await dispatch(getUserProfile());
-  };
 
   return (
-    <FormStyled onSubmit={handleSubmit(onSubmit)}>
+    <FormStyled onSubmit={handleSubmit((values) => onSubmit(values))}>
       <Title variant="h1" margin="0 0 40px 0">Sign in</Title>
       <InputWrapper>
         <Input
@@ -37,9 +30,9 @@ const FormSignIn = () => {
           type="email"
           icon={emailIcon}
           name="userName"
-          {...register('userName', { required: true, minLength: 1, pattern: EMAIL })}
+          {...register('userName', { required: true, minLength: 3, pattern: EMAIL })}
         />
-        {errors.email && <SpanError variant="auth">Email contains unsupported characters</SpanError>}
+        {errors.userName && <SpanError variant="auth" role="alert">Email contains unsupported characters</SpanError>}
       </InputWrapper>
       <InputWrapper>
         <Input
@@ -49,7 +42,7 @@ const FormSignIn = () => {
           name="password"
           {...register('password', { required: true, minLength: 1, pattern: PASSWORD })}
         />
-        {errors.password && <SpanError variant="auth">Password contains unsupported characters</SpanError>}
+        {errors.password && <SpanError variant="auth" role="alert">Password contains unsupported characters</SpanError>}
         <SpanImageVisible
           visiblePassword={visiblePassword}
           setTypePassword={setTypePassword}

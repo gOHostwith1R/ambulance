@@ -1,20 +1,12 @@
 # ambulance
-routes: /sign-up
+lesson-6
 
-/sign-in
+add tests:
 
-/restore-password-email 
+-form sign up
 
-/restore-message
+-form sign in
 
-/patients
+-patients page
 
-Add routes: /appointments
-
-Transfer to react
-
-Fix Layouts
-
-Add Layouts from Lesson-3 ( routes /appointments )
-
-Return from AppointmentsPage click on the button Profile, and the button Patients if you need to return to the AppointmentsPage
+-appointments page

@@ -202,7 +202,8 @@ const appointmentSlice = createSlice({
     },
     [getDoctors.fulfilled]: (state, action) => {
       state.status = 'resolved';
-      state.doctorName = [];
+      state.doctorName = action.payload;
+      console.log(state.doctorName);
       state.doctorName.push(...action.payload);
     },
     [getDoctors.rejected]: (state, action) => {

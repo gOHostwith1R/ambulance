@@ -1,7 +1,5 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { getUserProfile, signUpUser } from '../../../store/slices/userSlice';
 import { FormStyled } from '../../../components/Form/form.styled';
 import useSetVisiblePassword from '../../../core/hooks/useSetVisiblePassword';
 import Input from '../../../components/Input';
@@ -19,18 +17,13 @@ import { FIRSTLASTNAME, EMAIL, PASSWORD } from '../../../core/consts/validation'
 import Title from '../../../components/Title';
 import { DICTIONARY } from '../../../core/consts/dictionary';
 
-const FormSignUp = () => {
-  const dispatch = useDispatch();
+const FormSignUp = ({ onSubmit }) => {
   const { type, setTypePassword } = useSetVisiblePassword();
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = async (data) => {
-    await dispatch(signUpUser(data));
-    await dispatch(getUserProfile());
-  };
 
   return (
-    <FormStyled onSubmit={handleSubmit(onSubmit)}>
-      <Title variant="h1" margin="0 0 40px">Sign up</Title>
+    <FormStyled onSubmit={handleSubmit((values) => onSubmit(values))}>
+      <Title variant="h1" margin="0 0 40px">Sign Up</Title>
       <InputWrapper>
         <Input
           placeholder={DICTIONARY.authForm.firstName}
@@ -39,7 +32,7 @@ const FormSignUp = () => {
           name="firstName"
           {...register('firstName', { required: true, minLength: 1, pattern: FIRSTLASTNAME })}
         />
-        {errors.firstName && <SpanError variant="auth">First Name contains unsupported characters</SpanError>}
+        {errors.firstName && <SpanError variant="auth" role="alert">First Name contains unsupported characters</SpanError>}
       </InputWrapper>
       <InputWrapper>
         <Input
@@ -49,7 +42,7 @@ const FormSignUp = () => {
           name="lastName"
           {...register('lastName', { required: true, minLength: 1, pattern: FIRSTLASTNAME })}
         />
-        {errors.lastName && <SpanError variant="auth">Last Name contains unsupported characters</SpanError>}
+        {errors.lastName && <SpanError variant="auth" role="alert">Last Name contains unsupported characters</SpanError>}
       </InputWrapper>
       <InputWrapper>
         <Input
@@ -59,17 +52,17 @@ const FormSignUp = () => {
           name="userName"
           {...register('userName', { required: true, minLength: 1, pattern: EMAIL })}
         />
-        {errors.email && <SpanError variant="auth">Email contains unsupported characters</SpanError>}
+        {errors.userName && <SpanError variant="auth" role="alert">Email contains unsupported characters</SpanError>}
       </InputWrapper>
       <InputWrapper>
         <Input
-          placeholder={DICTIONARY.authForm.restorePassword}
+          placeholder={DICTIONARY.authForm.password}
           type={type}
           icon={passwordIcon}
           name="password"
-          {...register('password', { required: true, minLength: 1, pattern: PASSWORD })}
+          {...register('password', { required: true, minLength: 6, pattern: PASSWORD })}
         />
-        {errors.password && <SpanError variant="auth">Password contains unsupported characters</SpanError> }
+        {errors.password && <SpanError variant="auth" role="alert">Password contains unsupported characters</SpanError> }
         <SpanImageVisible
           visiblePassword={visiblePassword}
           setTypePassword={setTypePassword}
@@ -88,7 +81,7 @@ const FormSignUp = () => {
           setTypePassword={setTypePassword}
         />
       </InputWrapper>
-      <Button variant="contained" color="primary" group="auth" endIcon={Arrow} pos="80% 50%">
+      <Button variant="contained" color="primary" group="auth" endIcon={Arrow} pos="80% 50%" type="submit">
         {DICTIONARY.authForm.signUp}
       </Button>
     </FormStyled>

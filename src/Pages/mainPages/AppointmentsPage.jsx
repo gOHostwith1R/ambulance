@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTitle, useWindowSize } from 'react-use';
-
 import { useDispatch, useSelector } from 'react-redux';
 import MainHeader from '../../features/Main/MainHeader';
 import HeaderUser from '../../features/Main/HeaderUser';
@@ -15,7 +14,6 @@ import FlexContainer from '../../components/FlexContainer';
 import { Dropdown } from '../../components/Dropdown';
 import { DropdownItemStyled } from '../../components/Dropdown/dropdown.styled';
 import CardWrapper from '../../features/Main/CardWrapper';
-import Card from '../../features/Main/Card';
 import PageWrapper from '../../features/Main/PageWrapper/page.wrapper';
 import UserInfo from '../../features/Main/UserInfo';
 import Paragraph from '../../components/Paragraph';
@@ -23,15 +21,11 @@ import Indicator from '../../components/Indicator';
 import Avatar from '../../components/Avatar';
 import Plus from '../../assets/svg/plus.svg';
 import PlusBlue from '../../assets/svg/plusBlue.svg';
-import { CardHeaderStyled } from '../../features/Main/Card/card.styled';
-import SettingsIcon from '../../assets/svg/more-vertical.svg';
-import TimeIcon from '../../assets/svg/clock.svg';
-import HeartIcon from '../../assets/svg/heart.svg';
 import { DICTIONARY } from '../../core/consts/dictionary';
 import { appointmentSelector, getListOfAppointmentsPatient, setStatus } from '../../store/slices/appointmentSlice';
 import CustomLoader from '../../components/Loader';
 import { getRefreshToken, getUserProfile, userSelector } from '../../store/slices/userSlice';
-import formatISOtoUTC from '../../helpers/formatISOtoUTC';
+import AppointmentList from '../../features/Main/AppointmentList';
 
 const AppointmentsPage = () => {
   const dispatch = useDispatch();
@@ -45,11 +39,11 @@ const AppointmentsPage = () => {
     dispatch(setStatus());
     dispatch(getUserProfile());
     dispatch(getListOfAppointmentsPatient());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getRefreshToken());
-  }, [error]);
+  }, [dispatch, error]);
 
   return (
     <PageWrapper>
@@ -93,36 +87,13 @@ const AppointmentsPage = () => {
             </FlexContainer>
           </ContentHeader>
           <CardWrapper>
-            {statusForPatient === '' || statusForPatient === 'loading' ? <CustomLoader /> : listOfAppointments.map((item) => {
-              const { doctor } = item;
-              const dateVisit = formatISOtoUTC(item.visit_date);
-              return (
-                <Card key={item.visit_date}>
-                  <CardHeaderStyled>
-                    <FlexContainer gap="16px">
-                      <Avatar variant="card" src={doctor.photo} alt="avatar" />
-                      <FlexContainer direction="column" alignItems="flex-start">
-                        <Title variant="h3" level={3}>{`${doctor.first_name} ${doctor.last_name}`}</Title>
-                        <FlexContainer gap="8px">
-                          <Paragraph variant="caption">{doctor.specialization_name}</Paragraph>
-                        </FlexContainer>
-                      </FlexContainer>
-                    </FlexContainer>
-                    <img src={SettingsIcon} alt="settings" />
-                  </CardHeaderStyled>
-                  <FlexContainer direction="column" gap="16px" alignItems="flex-start" margin="24px 32px 40px 32px">
-                    <FlexContainer gap="18px">
-                      <img src={TimeIcon} alt="time-icon" />
-                      <Title variant="h4" level={4}>{dateVisit}</Title>
-                    </FlexContainer>
-                    <FlexContainer gap="20px">
-                      <img src={HeartIcon} alt="heart-icon" />
-                      <Paragraph variant="plain-2" font="regular">{item.reason}</Paragraph>
-                    </FlexContainer>
-                  </FlexContainer>
-                </Card>
-              );
-            })}
+            {statusForPatient === '' || statusForPatient === 'loading' ? <CustomLoader />
+              : (
+                <AppointmentList
+                  listOfAppointments={listOfAppointments}
+                  statusForPatient={statusForPatient}
+                />
+              )}
           </CardWrapper>
         </ContentWrapper>
       </MainWrapper>

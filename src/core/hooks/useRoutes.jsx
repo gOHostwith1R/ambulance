@@ -12,8 +12,7 @@ import { userSelector } from '../../store/slices/userSlice';
 
 // eslint-disable-next-line consistent-return
 const useRoutes = () => {
-  const { auth, userProfile } = useSelector(userSelector);
-  console.log(userProfile);
+  const { auth } = useSelector(userSelector);
   if (!auth) {
     return (
       <Switch>
