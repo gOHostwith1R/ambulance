@@ -9,6 +9,14 @@ import {
   DropdownItemStyled,
 } from './dropdown.styled';
 
+const DropdownHeader = ({ name }) => (
+  <DropdownHeaderStyled>{name}</DropdownHeaderStyled>
+);
+
+const DropdownMainItem = ({ mainItem, onClick }) => (
+  <DropdownMainItemStyled onClick={onClick}>{mainItem}</DropdownMainItemStyled>
+);
+
 export const Dropdown = ({ name, mainItem, children }) => {
   const [visible, setVisible] = useState(false);
   const { width } = useWindowSize();
@@ -33,11 +41,3 @@ export const Dropdown = ({ name, mainItem, children }) => {
     </DropdownStyled>
   );
 };
-
-const DropdownHeader = ({ name }) => (
-  <DropdownHeaderStyled>{name}</DropdownHeaderStyled>
-);
-
-const DropdownMainItem = ({ mainItem, onClick }) => (
-  <DropdownMainItemStyled onClick={onClick}>{mainItem}</DropdownMainItemStyled>
-);

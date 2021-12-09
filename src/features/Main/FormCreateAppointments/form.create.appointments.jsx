@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
+import { useDispatch } from 'react-redux';
 import FlexContainer from '../../../components/FlexContainer';
 import Button from '../../../components/Button';
 import Paragraph from '../../../components/Paragraph';
@@ -17,39 +16,25 @@ import TimeSlot from '../../../components/TimeSlot';
 import Form from '../../../components/Form';
 import { FormCreateAppointmentsStyled } from './form.create.appointments.styled';
 import {
-  appointmentSelector, getDoctors, getFreeTime, getSpecializations, makeAppointment,
+  getDoctors, getFreeTime, getSpecializations,
   setDayVisit, setIsSelectedDoctor,
 } from '../../../store/slices/appointmentSlice';
 import CustomLoader from '../../../components/Loader';
 
-const FormCreateAppointments = () => {
-  const {
-    specializations, doctorName, status, dayDoctor,
-  } = useSelector(appointmentSelector);
+const FormCreateAppointments = ({
+  onSubmit, specializations, doctorName, status, dayDoctor,
+}) => {
   const dispatch = useDispatch();
   const [doctorsSpecialization, setDoctorsSpecialization] = useState('');
   const [isActiveTimeSlot, setIsActiveTimeSlot] = useState();
-  const [choosingTheTime, setChoosingTheTime] = useState('');
   const [checkErrors, setCheckErrors] = useState(false);
   const {
     register, handleSubmit, control, formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    data.date = dayDoctor.dayVisit.slice(0, 11);
-    data.date += choosingTheTime;
-    data.doctorID = data.doctorID.id;
-    dispatch(makeAppointment(data));
-  };
-
-  useMemo(() => {
-    if (dayDoctor.isSelectedDoctor.length !== 0 && dayDoctor.dayVisit.length !== 0) {
-      dispatch(getFreeTime(dayDoctor));
-    }
-  }, [dayDoctor.isSelectedDoctor, dayDoctor.dayVisit]);
 
   useEffect(() => {
     dispatch(getSpecializations());
-  }, []);
+  }, [dispatch]);
 
   const optionsOccupation = specializations.map((item) => ({
     value: item.specialization_name,
@@ -57,6 +42,9 @@ const FormCreateAppointments = () => {
     id: item.id,
   }));
 
+  console.log(doctorName[0].id);
+  console.log(dayDoctor);
+  console.log(specializations);
   const doctorsOptions = useMemo(() => doctorName.map((doctor) => ({
     label: `${doctor.first_name} ${doctor.last_name}`,
     value: `${doctor.first_name} ${doctor.last_name}`,
@@ -82,14 +70,9 @@ const FormCreateAppointments = () => {
     setIsActiveTimeSlot(id);
   };
 
-  const handleTimeSlot = (time) => {
-    const timeISO = `${moment(time, ['h:mm A']).format('HH:mm:ss.ms')}0Z`;
-    setChoosingTheTime(timeISO);
-    console.log(timeISO);
-  };
-
   const handleDay = (day) => {
     dispatch(setDayVisit(day.toISOString()));
+    dispatch(getFreeTime(dayDoctor));
   };
 
   useMemo(() => {
@@ -101,7 +84,7 @@ const FormCreateAppointments = () => {
   }, [dayDoctor.isSelectedDoctor]);
 
   return (
-    <Form width="100%" overflow="auto" onSubmit={handleSubmit(onSubmit)}>
+    <Form width="100%" overflow="auto" onSubmit={handleSubmit((values) => onSubmit(values))}>
       {status === 'loading' ? <CustomLoader />
         : (
           <FormCreateAppointmentsStyled>
@@ -138,7 +121,7 @@ const FormCreateAppointments = () => {
                     )}
                   />
                   {errors.occupation
-                  && <SpanError variant="auth">{DICTIONARY.createAppointmentPlaceholder.occupation}</SpanError>}
+                  && <SpanError variant="auth" role="alert">{DICTIONARY.createAppointmentPlaceholder.occupation}</SpanError>}
                 </FlexContainer>
                 <FlexContainer gap="16px" direction="column" alignItems="flex-start" position="relative">
                   <Paragraph
@@ -165,7 +148,7 @@ const FormCreateAppointments = () => {
                     )}
                   />
                   {errors.doctorID
-                  && <SpanError variant="auth">{DICTIONARY.createAppointmentPlaceholder.doctorsName}</SpanError>}
+                  && <SpanError variant="auth" role="alert">{DICTIONARY.createAppointmentPlaceholder.doctorsName}</SpanError>}
                 </FlexContainer>
                 <FlexContainer gap="16px" direction="column" alignItems="flex-start" position="relative">
                   <Paragraph
@@ -181,8 +164,8 @@ const FormCreateAppointments = () => {
                     variant="createAppointments"
                     {...register('reason', { required: true, minLength: 1 })}
                   />
-                  {errors.visitReason
-                  && <SpanError variant="auth">{DICTIONARY.createAppointmentLabels.visitReason}</SpanError>}
+                  {errors.reason
+                  && <SpanError variant="auth" role="alert">{DICTIONARY.createAppointmentLabels.visitReason}</SpanError>}
                 </FlexContainer>
                 <FlexContainer gap="16px" direction="column" alignItems="flex-start">
                   <Paragraph
@@ -199,14 +182,6 @@ const FormCreateAppointments = () => {
                     {...register('note')}
                   />
                 </FlexContainer>
-                <Button
-                  disabled={checkErrors ? 'disabled' : undefined}
-                  variant="contained"
-                  color="primary"
-                  group="main"
-                >
-                  Submit
-                </Button>
               </FlexContainer>
             </FlexContainer>
             <FlexContainer direction="column" gap="40px" alignItems="flex-start" position="relative">
@@ -228,8 +203,8 @@ const FormCreateAppointments = () => {
                   />
                 )}
               />
-              {errors.calendar
-                    && <SpanError variant="date">{DICTIONARY.createAppointment.selectDay}</SpanError>}
+              {errors.date
+                    && <SpanError variant="date" role="alert">{DICTIONARY.createAppointment.selectDay}</SpanError>}
             </FlexContainer>
             <FlexContainer direction="column" gap="40px" alignItems="flex-start">
               <FlexContainer gap="16px">
@@ -252,15 +227,24 @@ const FormCreateAppointments = () => {
                           e.preventDefault();
                           handleIsActive(elem.id);
                           field.onChange(elem.time);
-                          handleTimeSlot(elem.time);
                         }}
                       />
                     )}
                   />
                 ))}
                 {errors.timeSlot
-                      && <SpanError variant="calendar">{DICTIONARY.createAppointment.selectTime}</SpanError>}
+                      && <SpanError variant="date" role="alert">{DICTIONARY.createAppointment.selectTime}</SpanError>}
               </GridContainer>
+              <Button
+                disabled={checkErrors ? 'disabled' : undefined}
+                variant="contained"
+                color="primary"
+                group="main"
+                data-testid="submit-button"
+                type="submit"
+              >
+                Submit
+              </Button>
             </FlexContainer>
           </FormCreateAppointmentsStyled>
         )}

@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components';
 
-export const AvatarStyled = styled.img`
+type AvatarStyledProps = {
+  variant: string,
+};
+
+export const AvatarStyled = styled.img < AvatarStyledProps >`
   ${(props) => props.variant === 'card' && css`
     width: 48px;
     height: 48px;

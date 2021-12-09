@@ -1,7 +1,12 @@
 import React from 'react';
 import { AvatarStyled } from './avatar.styled';
 
-const Avatar = ({ src, variant }) => (
+type AvatarProps = {
+  src: string,
+  variant: string,
+};
+
+const Avatar = ({ src, variant }: AvatarProps) => (
   <AvatarStyled src={src} variant={variant} />
 );
 

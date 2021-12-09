@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTitle } from 'react-use';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PageWrapper from '../../features/Main/PageWrapper/page.wrapper';
 import MainHeader from '../../features/Main/MainHeader';
 import HeaderUser from '../../features/Main/HeaderUser';
@@ -17,11 +17,23 @@ import FlexContainer from '../../components/FlexContainer';
 import ContentHeader from '../../features/Main/ContentHeader';
 import FormCreateAppointments from '../../features/Main/FormCreateAppointments';
 import { DICTIONARY } from '../../core/consts/dictionary';
-import { userSelector } from '../../store/slices/userSlice';
+import { getUserProfile, userSelector } from '../../store/slices/userSlice';
+import { appointmentSelector, makeAppointment } from '../../store/slices/appointmentSlice';
 
 const MakeAppointmentsPage = () => {
+  const dispatch = useDispatch();
   useTitle(DICTIONARY.pageName.makeAppointment);
   const { userProfile } = useSelector(userSelector);
+  const {
+    specializations, doctorName, status, dayDoctor,
+  } = useSelector(appointmentSelector);
+  useEffect(() => {
+    dispatch(getUserProfile());
+  }, [dispatch]);
+
+  const handleSubmit = (data) => {
+    dispatch(makeAppointment(data));
+  };
   return (
     <PageWrapper>
       <MainHeader>
@@ -46,7 +58,13 @@ const MakeAppointmentsPage = () => {
           <ContentHeader>
             <Title variant="h2" level={2} margin="72px 0 0 0" width="8px" height="14px">{DICTIONARY.pageName.makeAppointment}</Title>
           </ContentHeader>
-          <FormCreateAppointments />
+          <FormCreateAppointments
+            onSubmit={handleSubmit}
+            specializations={specializations}
+            doctorName={doctorName}
+            status={status}
+            dayDoctor={dayDoctor}
+          />
         </ContentWrapper>
       </MainWrapper>
     </PageWrapper>

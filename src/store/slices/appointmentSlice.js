@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import moment from 'moment';
 import { API_BASE } from '../../core/consts/api';
 import { getRefreshToken } from './userSlice';
 
@@ -120,9 +121,12 @@ export const getListOfAppointmentsDoctor = createAsyncThunk(
 export const makeAppointment = createAsyncThunk(
   'appointments/makeAppointment',
   async ({
-    date, doctorID, note, reason,
+    date, doctorID, note, reason, timeSlot,
   }) => {
     try {
+      doctorID = doctorID.id;
+      timeSlot = `${moment(timeSlot, ['h:mm A']).format('HH:mm:ss.ms')}0Z`;
+      date = date.toISOString().slice(0, 11) + timeSlot;
       const token = JSON.parse(localStorage.getItem('userAuth'));
       const response = await fetch(`${API_BASE}appointments`, {
         method: 'POST',
@@ -203,8 +207,6 @@ const appointmentSlice = createSlice({
     [getDoctors.fulfilled]: (state, action) => {
       state.status = 'resolved';
       state.doctorName = action.payload;
-      console.log(state.doctorName);
-      state.doctorName.push(...action.payload);
     },
     [getDoctors.rejected]: (state, action) => {
       state.error = action.error;

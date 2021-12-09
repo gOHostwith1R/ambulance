@@ -13,7 +13,7 @@ export const SpanErrorStyled = styled.span`
     left: 0;
     top: 100%;
 `};
-  ${(props) => props.variant === 'calendar' && css`
+  ${(props) => props.variant === 'date' && css`
     bottom: -20px;
 `};
 `;

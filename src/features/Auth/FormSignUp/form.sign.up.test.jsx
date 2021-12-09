@@ -24,11 +24,9 @@ let errorNodesEmpty;
 let errorNodes;
 
 describe('Should render Form Sign Up', () => {
-  const initialState = { };
   const mockStore = configureStore();
-  let store;
   beforeEach(() => {
-    store = mockStore(initialState);
+    const store = mockStore({});
     const {
       getByPlaceholderText, getByRole, queryAllByRole, findAllByRole,
     } = render(

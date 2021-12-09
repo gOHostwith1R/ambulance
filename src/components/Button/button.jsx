@@ -2,7 +2,7 @@ import React from 'react';
 import { ButtonStyled } from './button.styled';
 
 const Button = ({
-  children, variant, color, group, endIcon, pos, startIcon, display, style, disabled, type,
+  children, variant, color, group, endIcon, pos, startIcon, display, disabled, type,
 }) => (
   <ButtonStyled
     variant={variant}
@@ -12,7 +12,6 @@ const Button = ({
     pos={pos}
     startIcon={startIcon}
     display={display}
-    style={style}
     disabled={disabled}
     type={type}
   >

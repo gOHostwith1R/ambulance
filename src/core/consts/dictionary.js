@@ -48,6 +48,6 @@ export const DICTIONARY = {
     note: 'Leave a note if needed',
   },
   dropdownTime: [' Upcoming', 'Later', 'Now'],
-  dropdownSortPatients: [' Date', 'Name', 'Status' +
-  ''],
+  dropdownSortPatients: [' Date', 'Name', 'Status'
+  + ''],
 };
