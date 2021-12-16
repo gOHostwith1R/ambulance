@@ -1,12 +1,6 @@
 # ambulance
-lesson-6
+lesson-7
 
-add tests:
-
--form sign up
-
--form sign in
-
--patients page
-
--appointments page
+transfer of the project to typescript
+does not work. 
+need to fix make appointment form

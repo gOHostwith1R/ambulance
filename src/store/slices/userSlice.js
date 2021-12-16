@@ -4,6 +4,31 @@ import saveToken from '../../helpers/saveToken';
 
 const storageUser = 'userAuth';
 
+export const getUserProfile = createAsyncThunk(
+  'user/getUserProfile',
+  async (_, { rejectWithValue }) => {
+    const token = JSON.parse(localStorage.getItem('userAuth'));
+    try {
+      const response = await fetch(`${API_BASE}auth/profile`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token.access_token,
+        },
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+
+      const data = await response.json();
+      localStorage.setItem('role', data.role_name);
+      return data;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  },
+);
+
 export const signUpUser = createAsyncThunk(
   'user/signUp',
   async ({
@@ -36,7 +61,8 @@ export const signUpUser = createAsyncThunk(
 
 export const signInUser = createAsyncThunk(
   'user/SignIn',
-  async ({ userName, password }) => {
+  async (dataUser, { dispatch }) => {
+    const { userName, password } = dataUser;
     try {
       const response = await fetch(`${API_BASE}auth/login`, {
         method: 'POST',
@@ -55,6 +81,7 @@ export const signInUser = createAsyncThunk(
 
       const data = await response.json();
       saveToken(data);
+      dispatch(getUserProfile());
       return data;
     } catch (e) {
       return e;
@@ -87,32 +114,6 @@ export const getRefreshToken = createAsyncThunk(
   },
 );
 
-export const getUserProfile = createAsyncThunk(
-  'user/getUserProfile',
-  async (_, { rejectWithValue }) => {
-    const token = JSON.parse(localStorage.getItem('userAuth'));
-    try {
-      const response = await fetch(`${API_BASE}auth/profile`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: token.access_token,
-        },
-      });
-      console.log('fd');
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
-
-      const data = await response.json();
-      localStorage.setItem('role', data.role_name);
-      return data;
-    } catch (e) {
-      return rejectWithValue(e.message);
-    }
-  },
-);
-
 const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -124,7 +125,6 @@ const userSlice = createSlice({
     error: '',
     role: '',
     auth: !!localStorage.getItem(storageUser),
-    userProfile: {},
   },
   reducers: {
   },

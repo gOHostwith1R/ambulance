@@ -1,5 +1,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-undef */
+
 export const customSelectStyled = {
   container: (provided) => ({
     ...provided,

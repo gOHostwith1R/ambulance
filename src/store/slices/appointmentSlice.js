@@ -218,8 +218,7 @@ const appointmentSlice = createSlice({
     },
     [getFreeTime.fulfilled]: (state, action) => {
       state.status = 'resolved';
-      state.isFreeTime = [];
-      state.isFreeTime.push(...action.payload);
+      state.isFreeTime.push(action.payload);
     },
     [getFreeTime.rejected]: (state, action) => {
       state.error = action.error;
@@ -255,5 +254,3 @@ const appointmentSlice = createSlice({
 export const appointmentSelector = (state) => state.appointment;
 
 export const { setDayVisit, setIsSelectedDoctor, setStatus } = appointmentSlice.actions;
-
-export default appointmentSlice.reducer;
