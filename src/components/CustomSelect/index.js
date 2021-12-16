@@ -1,3 +1,1 @@
-import CustomSelect from './custom.select';
-
-export default CustomSelect;
+export { CustomSelect } from './CustomSelect';

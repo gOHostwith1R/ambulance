@@ -2,7 +2,7 @@ import React from 'react';
 import Loader from 'react-loader-spinner';
 import { LoaderStyled } from './Loader.styled';
 
-const CustomLoader: React.FC = () => (
+export const CustomLoader: React.FC = () => (
   <LoaderStyled>
     <Loader
       type="TailSpin"
@@ -13,5 +13,3 @@ const CustomLoader: React.FC = () => (
     />
   </LoaderStyled>
 );
-
-export default CustomLoader;

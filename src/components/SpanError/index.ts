@@ -1,3 +1,1 @@
-import SpanError from './SpanError';
-
-export default SpanError;
+export { SpanError } from './SpanError';

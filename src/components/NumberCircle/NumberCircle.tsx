@@ -1,14 +1,9 @@
 import React from 'react';
 import { NumberCircleStyled } from './NumberCircle.styled';
+import { NumberCircleProps } from './types';
 
-export interface NumberCircleProps {
-  children: JSX.Element | string,
-}
-
-const NumberCircle: React.FC <NumberCircleProps> = ({ children }) => (
+export const NumberCircle: React.FC <NumberCircleProps> = ({ children }) => (
   <NumberCircleStyled>
     {children}
   </NumberCircleStyled>
 );
-
-export default NumberCircle;

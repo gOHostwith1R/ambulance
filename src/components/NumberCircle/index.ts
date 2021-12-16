@@ -1,3 +1,1 @@
-import NumberCircle from './NumberCircle';
-
-export default NumberCircle;
+export { NumberCircle } from './NumberCircle';

@@ -3,9 +3,7 @@ import {
   CardAvatarDescriptionWrapper, CardBody,
   CardDate, CardHeaderStyled, CardHeaderTitleSubtitle, CardReason,
 } from '../../../../layouts/Card/Card.styled';
-import Avatar from '../../../../components/Avatar';
-import Title from '../../../../components/Title';
-import Paragraph from '../../../../components/Paragraph';
+import { Avatar, Paragraph, Title } from '../../../../components';
 import SettingsIcon from '../../../../assets/svg/more-vertical.svg';
 import TimeIcon from '../../../../assets/svg/clock.svg';
 import HeartIcon from '../../../../assets/svg/heart.svg';

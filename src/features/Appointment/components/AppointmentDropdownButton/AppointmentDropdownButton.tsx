@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppointmentDropdownButtonStyled } from './AppointmentDropdownButton.styled';
-import { Dropdown } from '../../../../components/Dropdown';
+import { Dropdown } from '../../../../components';
 import { DICTIONARY } from '../../../../core/consts/dictionary';
 import ButtonToIcon from '../ButtonToIcon';
-import { DropdownItemsStyled } from '../../../../components/Dropdown/dropdown.styled';
+import { DropdownItemsStyled } from '../../../../components/Dropdown/Dropdown.styled';
 
 const AppointmentDropdownButton: React.FC = () => (
   <AppointmentDropdownButtonStyled>

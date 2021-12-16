@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import SignUp from '../../features/Auth/pages/SignUp';
-import SignIn from '../../features/Auth/pages/SignIn';
-import RestorePasswordEmail from '../../features/Auth/pages/RestorePasswordEmail';
-import RestoreMessage from '../../features/Auth/pages/RestoreMessage';
+import SignUp from '../../features/Auth/SignUp';
+import SignIn from '../../features/Auth/SignIn';
+import RestorePasswordEmail from '../../features/Auth/RestorePasswordEmail';
+import RestoreMessage from '../../features/Auth/RestoreMessage';
 import PatientsPage from '../../features/Patient/PatientsPage';
 import AppointmentsPage from '../../features/Appointment/AppointmentsPage';
-import MakeAppointmentsPage from '../../features/MakeAnAppointment/MakeAppointment';
+import MakeAppointmentsPage from '../../features/Appointment/MakeAppointment';
 import { useAppSelector } from '../../store';
 
 // eslint-disable-next-line consistent-return

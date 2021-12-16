@@ -1,3 +1,1 @@
-import SubmitMessage from './SubmitMessage';
-
-export default SubmitMessage;
+export { SubmitMessage } from './SubmitMessage';

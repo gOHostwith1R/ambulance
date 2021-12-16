@@ -3,10 +3,9 @@ import {
   CardAvatarDescriptionWrapper, CardBody, CardDate,
   CardHeaderStyled, CardHeaderTitleSubtitle, CardReason,
 } from '../../../../layouts/Card/Card.styled';
-import Avatar from '../../../../components/Avatar';
-import Title from '../../../../components/Title';
-import Indicator from '../../../../components/Indicator';
-import Paragraph from '../../../../components/Paragraph';
+import {
+  Avatar, Indicator, Paragraph, Title,
+} from '../../../../components';
 import SettingsIcon from '../../../../assets/svg/more-vertical.svg';
 import TimeIcon from '../../../../assets/svg/clock.svg';
 import ListIcon from '../../../../assets/svg/list.svg';

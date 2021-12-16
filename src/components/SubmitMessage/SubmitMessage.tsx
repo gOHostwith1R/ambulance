@@ -1,9 +1,9 @@
 import React from 'react';
 import { SubmitMessageStyled } from './SubmitMessage.styled';
-import Paragraph from '../Paragraph';
+import { Paragraph } from '../Paragraph';
 import { SubmitMessageProps } from './types';
 
-const SubmitMessage: React.FC <SubmitMessageProps> = ({ variant }) => (
+export const SubmitMessage: React.FC <SubmitMessageProps> = ({ variant }) => (
   <SubmitMessageStyled variant={variant}>
     <Paragraph variant="plain-1" font="semiBold" status="success">
       Success message goes here
@@ -13,5 +13,3 @@ const SubmitMessage: React.FC <SubmitMessageProps> = ({ variant }) => (
     </Paragraph>
   </SubmitMessageStyled>
 );
-
-export default SubmitMessage;

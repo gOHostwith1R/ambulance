@@ -1,3 +1,1 @@
-import CustomLoader from './Loader';
-
-export default CustomLoader;
+export { CustomLoader } from './Loader';

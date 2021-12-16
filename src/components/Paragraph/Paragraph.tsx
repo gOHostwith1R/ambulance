@@ -2,7 +2,7 @@ import React from 'react';
 import { ParagraphStyled } from './Paragrpaph.styled';
 import { ParagraphProps } from './types';
 
-const Paragraph: React.FC <ParagraphProps> = ({
+export const Paragraph: React.FC <ParagraphProps> = ({
   children, variant, font = '', color = '', status = '', group = '',
 }) => (
   <ParagraphStyled
@@ -15,5 +15,3 @@ const Paragraph: React.FC <ParagraphProps> = ({
     { children }
   </ParagraphStyled>
 );
-
-export default Paragraph;

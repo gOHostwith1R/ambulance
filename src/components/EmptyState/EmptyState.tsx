@@ -1,9 +1,9 @@
 import React from 'react';
 import { EmptyStateStyled } from './EmptyState.styled';
 import EmptyIcon from '../../assets/svg/medical-history-icon.svg';
-import Paragraph from '../Paragraph';
+import { Paragraph } from '../Paragraph';
 
-const EmptyState = () => (
+export const EmptyState = () => (
   <EmptyStateStyled>
     <img src={EmptyIcon} alt="empty-icon" />
     <Paragraph variant="plain-2" font="regular" color="#A1ABC9">
@@ -12,5 +12,3 @@ const EmptyState = () => (
     </Paragraph>
   </EmptyStateStyled>
 );
-
-export default EmptyState;

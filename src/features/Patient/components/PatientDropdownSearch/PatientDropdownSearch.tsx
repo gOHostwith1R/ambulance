@@ -1,9 +1,8 @@
 import React from 'react';
 import { PatientDropdownSearchStyled } from './PatientDropdownSearch.styled';
-import Search from '../../../../components/Search';
-import { Dropdown } from '../../../../components/Dropdown';
+import { Search, Dropdown } from '../../../../components';
 import { DICTIONARY } from '../../../../core/consts/dictionary';
-import { DropdownItemsStyled } from '../../../../components/Dropdown/dropdown.styled';
+import { DropdownItemsStyled } from '../../../../components/Dropdown/Dropdown.styled';
 
 const PatientDropdownSearch = () => (
   <PatientDropdownSearchStyled>

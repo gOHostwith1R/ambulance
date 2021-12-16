@@ -2,24 +2,24 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTitle } from 'react-use';
 import { useDispatch } from 'react-redux';
-import MainHeader from '../../components/MainHeader';
+import {
+  MainHeader,
+  Button, Avatar, ContentHeader, Indicator,
+  CustomLoader,
+  Paragraph,
+  Title,
+  UserInfo,
+} from '../../components';
 import HeaderUser from '../../layouts/HeaderUser';
 import MainWrapper from '../../layouts/MainWrapper';
 import ContentWrapper from '../../layouts/ContentWrapper';
 import ButtonWrapper from '../../layouts/ButtonWrapper';
-import Button from '../../components/Button';
-import ContentHeader from '../../components/ContentHeader';
-import Title from '../../components/Title';
 import CardWrapper from '../../layouts/CardWrapper';
 import PageWrapper from '../../layouts/PageWrapper/PageWrapper';
-import UserInfo from '../../components/UserInfo';
-import Paragraph from '../../components/Paragraph';
-import Avatar from '../../components/Avatar';
-import Indicator from '../../components/Indicator';
+
 import { DICTIONARY } from '../../core/consts/dictionary';
 import { fetchListOfAppointmentsDoctor } from './redux/PatientSlice';
 import { fetchUserProfile, fetchRefreshToken } from '../Auth/redux/userSlice';
-import CustomLoader from '../../components/Loader';
 import PatientsList from './components/PatientsList';
 import PatientDropdownSearch from './components/PatientDropdownSearch';
 import { useAppSelector } from '../../store';

@@ -1,16 +1,11 @@
 import React from 'react';
 import { MainHeaderStyled } from './MainHeader.styled';
-import HeaderLogo from '../HeaderLogo';
+import { HeaderLogo } from '../HeaderLogo';
+import { MainHeaderProps } from './types';
 
-export interface MainHeaderProps {
-  children: JSX.Element,
-}
-
-const MainHeader: React.FC <MainHeaderProps> = ({ children }) => (
+export const MainHeader: React.FC <MainHeaderProps> = ({ children }) => (
   <MainHeaderStyled>
     <HeaderLogo />
     {children}
   </MainHeaderStyled>
 );
-
-export default MainHeader;

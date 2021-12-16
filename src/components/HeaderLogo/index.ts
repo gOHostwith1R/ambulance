@@ -1,3 +1,1 @@
-import HeaderLogo from './HeaderLogo';
-
-export default HeaderLogo;
+export { HeaderLogo } from './HeaderLogo';

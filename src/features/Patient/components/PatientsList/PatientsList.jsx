@@ -1,5 +1,5 @@
 import React from 'react';
-import EmptyState from '../../../../components/EmptyState';
+import { EmptyState } from '../../../../components';
 import formatISOtoUTC from '../../../../helpers/formatISOtoUTC';
 import PatientCard from '../PatientCard';
 

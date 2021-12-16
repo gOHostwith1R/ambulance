@@ -2,7 +2,7 @@ import React from 'react';
 import { useWindowSize } from 'react-use';
 import PlusBlue from '../../../../assets/svg/plusBlue.svg';
 import Plus from '../../../../assets/svg/plus.svg';
-import Button from '../../../../components/Button';
+import { Button } from '../../../../components';
 import { DICTIONARY } from '../../../../core/consts/dictionary';
 
 const ButtonToIcon = () => {

@@ -1,3 +1,1 @@
-import ContentHeader from './ContentHeader';
-
-export default ContentHeader;
+export { ContentHeader } from './ContentHeader';

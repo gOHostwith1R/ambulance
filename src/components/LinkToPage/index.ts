@@ -1,3 +1,1 @@
-import LinkToPage from './LinkToPage';
-
-export default LinkToPage;
+export { LinkToPage } from './LinkToPage';

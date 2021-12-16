@@ -1,14 +1,9 @@
 import React from 'react';
 import { FooterStyled } from './Footer.styled';
+import { FooterProps } from './types';
 
-export interface FooterProps {
-  children?: React.ReactNode | JSX.Element,
-}
-
-const Footer: React.FC <FooterProps> = ({ children }) => (
+export const Footer: React.FC <FooterProps> = ({ children }) => (
   <FooterStyled>
     {children}
   </FooterStyled>
 );
-
-export default Footer;

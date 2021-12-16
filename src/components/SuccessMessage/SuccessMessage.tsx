@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { SuccessMessageStyled } from './SuccessMessage.styled';
 import CheckCircle from '../../assets/svg/check-circle.svg';
 import Multiply from '../../assets/svg/multiply.svg';
-import Image from '../Image';
-import Paragraph from '../Paragraph';
+import { Image } from '../Image';
+import { Paragraph } from '../Paragraph';
 
-const SuccessMessage = () => {
+export const SuccessMessage = () => {
   const [visibility, setVisibility] = useState(false);
   const handleClick = () => {
     setVisibility(!visibility);
@@ -22,5 +22,3 @@ const SuccessMessage = () => {
     </SuccessMessageStyled>
   );
 };
-
-export default SuccessMessage;
