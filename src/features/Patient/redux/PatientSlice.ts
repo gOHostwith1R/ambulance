@@ -3,11 +3,12 @@ import { AppointmentSliceTypes } from './types';
 import { API_BASE } from '../../../core/consts/api';
 import { getRefreshToken } from '../../../store/slices/userSlice';
 
-const initialState = {
+const initialState: AppointmentSliceTypes = {
   listOfAppointments: [],
   status: 'pending',
   error: null,
-} as AppointmentSliceTypes;
+  text: '',
+};
 
 export const fetchListOfAppointmentsDoctor = createAsyncThunk(
   'appointments/fetchListOfAppointmentsDoctor',
@@ -39,7 +40,9 @@ const patientSlice = createSlice({
   name: 'patient',
   initialState,
   reducers: {
-
+    onChangeInput: (state, action) => {
+      state.text = action.payload;
+    },
   },
   extraReducers: ((builder) => {
     builder.addCase(fetchListOfAppointmentsDoctor.pending, (state) => {
@@ -57,5 +60,5 @@ const patientSlice = createSlice({
     });
   }),
 });
-
+export const { onChangeInput } = patientSlice.actions;
 export default patientSlice.reducer;

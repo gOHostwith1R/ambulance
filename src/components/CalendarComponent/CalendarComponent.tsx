@@ -3,8 +3,12 @@ import Calendar from 'react-calendar';
 import './calendar.css';
 import { CalendarComponentProps } from './types';
 
-export const CalendarComponent:React.FC <CalendarComponentProps> = ({ onChange, selected }) => (
+export const CalendarComponent:React.FC <CalendarComponentProps> = ({
+  onChange, selected,
+  inputRef,
+}) => (
   <Calendar
+    inputRef={inputRef}
     onChange={onChange}
     value={selected}
     minDate={new Date()}

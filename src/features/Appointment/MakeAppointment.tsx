@@ -3,52 +3,43 @@ import { useTitle } from 'react-use';
 import { useDispatch } from 'react-redux';
 import PageWrapper from '../../layouts/PageWrapper/PageWrapper';
 import {
-  MainHeader, Avatar, ContentHeader, Indicator,
-  Paragraph,
+  ContentHeader,
   Title,
-  UserInfo,
+  UserProfile,
 } from '../../components';
-import HeaderUser from '../../layouts/HeaderUser';
 import MainWrapper from '../../layouts/MainWrapper';
 import ContentWrapper from '../../layouts/ContentWrapper';
 import FormMakeAnAppointment from './components/FormMakeAnAppointments';
 import { DICTIONARY } from '../../core/consts/dictionary';
-// import { makeAppointment } from '../../store/slices/appointmentSlice';
 import LinksWrapper from './components/LinksWrapper';
-import { useAppSelector } from '../../store';
+import { makeAppointment, setMakeAppointmentStatus } from './redux/appointmentSlice';
+import { MakeAppointmentProps } from './redux/types';
 import { fetchUserProfile } from '../Auth/redux/userSlice';
+import { useAppSelector } from '../../store';
 
-const MakeAppointmentsPage = () => {
+const MakeAppointmentsPage: React.FC = () => {
   const dispatch = useDispatch();
   useTitle(DICTIONARY.pageName.makeAppointment);
   useEffect(() => {
     dispatch(fetchUserProfile());
+    dispatch(setMakeAppointmentStatus());
   }, [dispatch]);
 
-  const userProfile = useAppSelector((state) => state.user.userProfile);
+  const handleSubmit = (values: MakeAppointmentProps) => {
+    dispatch(makeAppointment(values));
+  };
 
-  /* const handleSubmit = () => {
-    dispatch(makeAppointment());
-  }; */
+  const userProfile = useAppSelector((state) => state.user.userProfile);
   return (
     <PageWrapper>
-      <MainHeader>
-        <HeaderUser>
-          <UserInfo>
-            <Title variant="h3" level={3}>{`${userProfile.first_name} ${userProfile.last_name}`}</Title>
-            <Paragraph variant="caption" color="#A1ABC9">{userProfile.role_name}</Paragraph>
-          </UserInfo>
-          <Avatar src={userProfile.photo} variant="header-avatar" alt="avatar" />
-          <Indicator variant="withBorder" status="confirmed" />
-        </HeaderUser>
-      </MainHeader>
+      <UserProfile userProfile={userProfile} />
       <MainWrapper>
         <ContentWrapper>
           <LinksWrapper />
           <ContentHeader variant="makeAppointment">
             <Title variant="h2" level={2}>{DICTIONARY.pageName.makeAppointment}</Title>
           </ContentHeader>
-          <FormMakeAnAppointment />
+          <FormMakeAnAppointment onSubmit={handleSubmit} />
         </ContentWrapper>
       </MainWrapper>
     </PageWrapper>

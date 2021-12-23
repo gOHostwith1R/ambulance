@@ -2,7 +2,7 @@ import React from 'react';
 import { MainWrapperStyled } from './MainWrapper.styled';
 
 export interface MainWrapperProps {
-  children: JSX.Element,
+  children?: React.ReactNode | JSX.Element,
 }
 
 const MainWrapper: React.FC <MainWrapperProps> = ({ children }) => (

@@ -8,6 +8,9 @@ import PatientsPage from '../../features/Patient/PatientsPage';
 import AppointmentsPage from '../../features/Appointment/AppointmentsPage';
 import MakeAppointmentsPage from '../../features/Appointment/MakeAppointment';
 import { useAppSelector } from '../../store';
+import { Profile } from '../../features/Profile';
+import { NotFoundPage } from '../../features/Auth';
+import { Resolutions } from '../../features/Resolutions';
 
 // eslint-disable-next-line consistent-return
 const useRoutes = () => {
@@ -27,7 +30,10 @@ const useRoutes = () => {
         <Route path="/restore-message">
           <RestoreMessage />
         </Route>
-        <Redirect to="/sign-in" />
+        <Route path="/404">
+          <NotFoundPage />
+        </Route>
+        <Redirect to="/404" />
       </Switch>
     );
   }
@@ -41,6 +47,12 @@ const useRoutes = () => {
         <Route path="/appointments/make">
           <MakeAppointmentsPage />
         </Route>
+        <Route path="/profile">
+          <Profile />
+        </Route>
+        <Route path="/resolutions">
+          <Resolutions />
+        </Route>
         <Redirect to="/appointments" />
       </Switch>
     );
@@ -50,11 +62,11 @@ const useRoutes = () => {
       <Route path="/patients">
         <PatientsPage />
       </Route>
-      <Route exact path="/appointments">
-        <AppointmentsPage />
+      <Route path="/profile">
+        <Profile />
       </Route>
-      <Route path="/appointments/make">
-        <MakeAppointmentsPage />
+      <Route path="/resolutions">
+        <Resolutions />
       </Route>
       <Redirect to="/patients" />
     </Switch>

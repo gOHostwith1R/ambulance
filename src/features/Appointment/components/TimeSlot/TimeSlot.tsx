@@ -3,17 +3,23 @@ import { TimeSlotStyled } from './TimeSlot.styled';
 import { TimeSlotProps } from './types';
 
 const TimeSlot: React.FC <TimeSlotProps> = ({
-  time, status = 'active', onClick, id,
+  time, status, onClick,
 }) => (
   <TimeSlotStyled
-    id={id}
-    disabled={status === 'disabled'}
     status={status}
     onClick={onClick}
-    active={id && 'active'}
+    disabled={!status && true}
   >
     {time}
   </TimeSlotStyled>
 );
 
 export default TimeSlot;
+
+/*
+  id={id}
+    disabled={status === 'disabled'}
+    status={status}
+    onClick={onClick}
+    active={id && 'active'}
+ */

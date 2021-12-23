@@ -9,6 +9,7 @@ export const SubmitMessageStyled = styled.div <SubmitMessageStyledProps>`
   background-color: #34C197;
   border-radius: 12px;
   z-index: 999;
+  min-width: 260px;
   padding: 24px 24px 32px 72px;
   ${(props) => props.variant === 'success' && css`
     background-color: #34C197;
@@ -16,5 +17,9 @@ export const SubmitMessageStyled = styled.div <SubmitMessageStyledProps>`
 
   ${(props) => props.variant === 'error' && css`
     background: #FF2567;
+  `};
+
+  ${(props) => props.visibility === 'false' && css`
+   display: none;
   `};
 `;

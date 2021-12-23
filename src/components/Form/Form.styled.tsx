@@ -9,6 +9,7 @@ export const FormStyled = styled.form <FormProps>`
   
   ${(props) => props.variant === 'makeAppointment' && css`
     width: 100%;
+    height: 100%;
     overflow: auto;
   `};
   @media(max-width: 768px) {

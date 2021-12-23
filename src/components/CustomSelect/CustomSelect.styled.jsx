@@ -4,7 +4,7 @@
 export const customSelectStyled = {
   container: (provided) => ({
     ...provided,
-    width: '27vw',
+    width: '100%',
     margin: '16px 0 0 0',
     fontSize: '17px',
     '@media only screen and (max-width: 1300px)': {

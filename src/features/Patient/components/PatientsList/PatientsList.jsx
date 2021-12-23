@@ -3,7 +3,7 @@ import { EmptyState } from '../../../../components';
 import formatISOtoUTC from '../../../../helpers/formatISOtoUTC';
 import PatientCard from '../PatientCard';
 
-const PatientsList = ({ listOfAppointments }) => (
+const PatientsList = ({ listOfAppointments, handleSetOpenModal }) => (
   listOfAppointments.length === 0
     ? <EmptyState /> : listOfAppointments.map((item) => {
       const { patient } = item;
@@ -14,6 +14,7 @@ const PatientsList = ({ listOfAppointments }) => (
           item={item}
           patient={patient}
           key={item.visit_date}
+          handleSetOpenModal={handleSetOpenModal}
         />
       );
     })

@@ -13,7 +13,7 @@ const AppointmentList = ({ listOfAppointments, status }) => (
           dateVisit={dateVisit}
           item={item}
           doctor={doctor}
-          key={item.visit_date}
+          key={item.id}
         />
       );
     }));

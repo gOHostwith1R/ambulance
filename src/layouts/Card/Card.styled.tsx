@@ -50,3 +50,7 @@ export const CardReason = styled.div`
   display: flex;
   gap: 20px;
 `;
+
+export const SettingsIconWrapper = styled.div`
+  cursor: pointer;
+`;

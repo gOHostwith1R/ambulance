@@ -17,7 +17,7 @@ const AppointmentCard: React.FC <AppointmentCardProps> = ({ item, doctor, dateVi
         <Avatar variant="card" src={doctor.photo} alt="avatar" />
         <CardHeaderTitleSubtitle>
           <Title variant="h3" level={3}>{`${doctor.first_name} ${doctor.last_name}`}</Title>
-          <Paragraph variant="caption">{doctor.specialization_name}</Paragraph>
+          <Paragraph variant="caption" color="#A1ABC9">{doctor.specialization_name}</Paragraph>
         </CardHeaderTitleSubtitle>
       </CardAvatarDescriptionWrapper>
       <img src={SettingsIcon} alt="settings" />

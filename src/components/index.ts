@@ -22,3 +22,6 @@ export { SubmitMessage } from './SubmitMessage';
 export { SuccessMessage } from './SuccessMessage';
 export { Title } from './Title';
 export { UserInfo } from './UserInfo';
+export { UserProfile } from './UserProfile';
+export type { UserProfileTypes } from './UserProfile';
+export { Modal } from './Modal';

@@ -3,7 +3,7 @@ import { InputStyled } from './Input.styled';
 import { InputProps } from './types';
 
 export const Input: React.FC <React.InputHTMLAttributes<HTMLInputElement> & InputProps> = ({
-  icon, placeholder, type, inputRef, onChange,
+  icon, placeholder, type, inputRef, onChange, variant,
 }) => (
   <InputStyled
     icon={icon}
@@ -11,5 +11,6 @@ export const Input: React.FC <React.InputHTMLAttributes<HTMLInputElement> & Inpu
     type={type}
     inputRef={inputRef}
     onChange={onChange}
+    variant={variant}
   />
 );

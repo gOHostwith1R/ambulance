@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { InputStyledProps } from './types';
 
 export const InputStyled = styled.input <InputStyledProps>`
@@ -7,14 +7,19 @@ export const InputStyled = styled.input <InputStyledProps>`
   border-radius: 8px;
   width: 100%;
   padding: 16px 64px;
-  font-weight: 400;
   font-size: 17px;
+  line-height: 24px;
   outline: none;
-  line-height: 1.25;
   background-color: #FFFFFF;
   background-image: url(${(props) => props.icon});
   background-position: 6% 46%;
   background-repeat: no-repeat;
+  
+  ${(props) => props.variant === 'makeAppointment' && css`
+    padding: 16px 48px 16px 26px;
+  `}
+
+  color: #A1ABC9;
   &:focus
   {
     border: 1px solid #7297FF;

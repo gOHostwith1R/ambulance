@@ -4,7 +4,7 @@ export const ContentWrapperStyled = styled.div`
   border-radius: 16px;
   height: 100%;
   background: #F9FAFF;
-  padding: 40px 16px 0 48px;
+  padding: 40px 24px 0 48px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

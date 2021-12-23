@@ -11,6 +11,10 @@ export const ButtonStyled = styled.button <ButtonStyledProps>`
     background-image: url(${props.startIcon});
     background-repeat: no-repeat;
     background-position: 5%;
+    @media(max-width: 512px) {
+     background-image: none;
+    }
+    
   `};
 
   ${(props) => props.color === 'primary' && css`
@@ -19,8 +23,13 @@ export const ButtonStyled = styled.button <ButtonStyledProps>`
   `};
 
   ${(props) => props.color === 'light' && css`
-    background: #FFFFFF;
+    background-color: #FFFFFF;
     color: #7297FF;
+    &:hover {
+      background-color: #7297FF;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
   `};
 
   ${(props) => props.group === 'auth' && css`
@@ -36,6 +45,9 @@ export const ButtonStyled = styled.button <ButtonStyledProps>`
 
   ${(props) => props.group === 'main' && css`
     padding: 10px 48px;
+    ${props.size === 'small' && css`
+      padding: 10px 30px 10px 40px;
+    `}
     ${props.color === 'primary' && css`
       font-weight: 600;
       font-size: 15px;
@@ -45,9 +57,17 @@ export const ButtonStyled = styled.button <ButtonStyledProps>`
       font-weight: normal;
       font-size: 15px;
       line-height: 140%;
+      
+      ${props.filling === 'outlined' && css`
+        border: 1px solid #DCE0EC;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 130%;
+        color: #A1ABC9;
+      `}
     `};
     @media(max-width: 768px) {
-      padding: 11px 29px;
+        padding: 11px 29px;
     }
     @media(max-width: 512px) {
       padding: 9px 14px;

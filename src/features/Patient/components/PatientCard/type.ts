@@ -2,6 +2,7 @@ export interface PatientCardProps {
   item: ItemProps,
   patient: PatientProps,
   dateVisit: string,
+  handleSetOpenModal: (elem: string) => void,
 }
 
 export interface ItemProps extends PatientCardProps {

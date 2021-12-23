@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
 export interface FormProps {
-  children?: React.ReactNode | JSX.Element,
+  children?: React.ReactNode | JSX.Element[],
   variant?: string,
 }

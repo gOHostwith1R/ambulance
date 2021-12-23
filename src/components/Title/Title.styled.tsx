@@ -4,7 +4,7 @@ import { TitleProps } from './types';
 export const TitleStyled = styled.div <TitleProps>`
   font-style: normal;
   font-weight: 600;
-  color: #202225;
+  color: ${(props) => props.color || '#202225'};
   text-overflow: ellipsis;
   margin: 0;
   ${(props) => props.variant === 'h1' && css`
@@ -17,10 +17,10 @@ export const TitleStyled = styled.div <TitleProps>`
   `};
 
   ${(props) => props.variant === 'h2' && css`
-    font-size: 24px;
+    font-size: 20px;
     line-height: 110%;
     @media(max-width: 768px) {
-      font-size: 20px;
+      font-size: 18px;
       line-height: 24px;
     }
   `};

@@ -3,10 +3,11 @@ import { ImageStyled } from './Image.styled';
 import { ImageProps } from './types';
 
 export const Image: React.FC <ImageProps> = ({
-  variant, img,
+  variant, img, onClick,
 }) => (
   <ImageStyled
     variant={variant}
     img={img}
+    onClick={onClick}
   />
 );

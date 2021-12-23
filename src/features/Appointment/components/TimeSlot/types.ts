@@ -1,14 +1,15 @@
 import React from 'react';
 
 export interface TimeSlotProps {
-  time: JSX.Element,
-  status: string,
-  onClick: React.MouseEventHandler<HTMLButtonElement>,
-  id: string,
+  time: React.ReactNode | JSX.Element,
+  status: boolean,
+  onClick?: React.MouseEventHandler<HTMLButtonElement>,
+  id?: string,
   active?: string,
+  disabled?: boolean,
 }
 
 export interface TimeSlotStyledProps {
-  status: string,
-  active: string,
+  status: boolean,
+  active?: string,
 }

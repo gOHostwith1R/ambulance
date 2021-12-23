@@ -37,9 +37,9 @@ export const DropdownItemsStyled = styled.span <DropdownItemsProps>`
   line-height: 140%;
   background: #F9FAFF;
   border-radius: 6px;
-  width: 132px;
+  width: ${(props) => (props.variant === 'card' ? '190px' : '138px')};
   height: 40px;
-  color: #202225;
+  color: ${(props) => (props.variant === 'Delete' ? '#FF2567' : '#202225')};
   margin: 0;
   padding-top: 10px;
   padding-left: 20px;

@@ -5,10 +5,12 @@ export interface InputProps {
   inputRef: RefCallBack
   type?: string
   placeholder: string,
-  onChange: (...event: any[]) => void;
+  variant?: string,
+  onChange: (...event: string[]) => void;
 }
 
 export interface InputStyledProps {
   icon?: string,
+  variant?: string,
   inputRef: RefCallBack
 }

@@ -7,8 +7,8 @@ export const ButtonWrapperStyled = styled.div`
   @media(max-width: 768px) {
     gap: 24px;
     justify-content: space-between;
-    :nth-child(3) {
-      display: none;
-    }
+  }
+  @media(max-width: 512px) {
+    gap: 6px;
   }
 `;
