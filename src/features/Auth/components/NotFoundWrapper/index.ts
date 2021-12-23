@@ -1,0 +1,1 @@
+export { NotFoundWrapper } from './NotFoundWrapper';

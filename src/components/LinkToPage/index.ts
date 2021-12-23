@@ -1,0 +1,1 @@
+export { LinkToPage } from './LinkToPage';

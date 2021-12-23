@@ -1,0 +1,82 @@
+{
+  "name": "ambulance",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.6.2",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.12",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "@types/react-select": "^5.0.1",
+    "axios": "^0.24.0",
+    "dayjs": "^1.10.7",
+    "formik": "^2.2.9",
+    "moment": "^2.29.1",
+    "node-sass": "^6.0.1",
+    "react": "^17.0.2",
+    "react-calendar": "^3.5.0",
+    "react-dom": "^17.0.2",
+    "react-hook-form": "^7.20.5",
+    "react-loader-spinner": "^4.0.0",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "4.0.3",
+    "react-select": "^5.2.1",
+    "react-use": "^17.3.1",
+    "styled-components": "^5.3.3",
+    "web-vitals": "^1.1.2",
+    "yup": "^0.32.11"
+  },
+  "scripts": {
+    "start": "node_modules/.bin/react-scripts start",
+    "build": "node_modules/.bin/react-scripts build",
+    "test": "node_modules/.bin/react-scripts test",
+    "eject": "node_modules/.bin/react-scripts eject"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "react-app",
+      "airbnb",
+      "airbnb-typescript"
+    ],
+    "rules": {
+      "react/prop-types": 0,
+      "import/prefer-default-export": "off",
+      "linebreak-style": "off",
+      "react/jsx-props-no-spreading": "off",
+      "no-param-reassign": 0
+    },
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.0",
+    "@types/react-calendar": "^3.4.3",
+    "@types/react-router-dom": "^5.3.2",
+    "@types/styled-components": "^5.1.17",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-typescript": "^16.1.0",
+    "promise": "^8.1.0",
+    "redux-mock-store": "^1.5.4",
+    "typescript": "^4.5.0"
+  }
+}
