@@ -2,23 +2,23 @@ import { SerializedError } from '@reduxjs/toolkit';
 
 export interface UserSliceTypes {
   status: 'pending' | 'resolved' | 'rejected' | string,
-  error: null | string | SerializedError,
+  error: null | number | SerializedError | unknown,
   auth: null | boolean
   userProfile: UserProfileTypes
   role: 'Patient' | 'Doctor' | string,
 }
 
 export interface UserSignInProps {
-  userName?: null | string,
-  password?: null | string,
+  userName?: string,
+  password?: string,
 }
 
 export interface UserSignUpProps {
-  firstName?: null | string
-  lastName?: null | string
-  userName?: null | string,
-  password?: null | string,
-  confirmPassword?: null | string,
+  firstName?: string
+  lastName?: string
+  userName?: string,
+  password?: string,
+  confirmPassword?: string,
 }
 
 export interface UserProfileTypes {
