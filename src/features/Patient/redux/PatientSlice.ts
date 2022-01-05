@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AppointmentSliceTypes } from './types';
-import { API_BASE } from '../../../core/consts/api';
-import { getRefreshToken } from '../../../store/slices/userSlice';
+import { fetchHttp } from '../../../helpers';
 
 const initialState: AppointmentSliceTypes = {
   listOfAppointments: [],
@@ -12,23 +11,16 @@ const initialState: AppointmentSliceTypes = {
 
 export const fetchListOfAppointmentsDoctor = createAsyncThunk(
   'appointments/fetchListOfAppointmentsDoctor',
-  async () => {
+  async (_, { rejectWithValue }) => {
     try {
-      const token = JSON.parse(localStorage.getItem('userAuth') as string);
-      const response = await fetch(`${API_BASE}appointments/doctor/me?offset=0&limit=20`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: token.access_token,
-        },
-      });
-      if (!response.ok) {
-        throw new Error();
+      const params = {
+        url: 'appointments/doctor/me?offset=0&limit=20',
+        fetchWithToken: true,
+      };
+      const data = await fetchHttp(params);
+      if (!data.ok) {
+        return rejectWithValue(data);
       }
-      if (response.status === 403) {
-        getRefreshToken();
-      }
-      const data = await response.json();
       return data;
     } catch (e) {
       return e;

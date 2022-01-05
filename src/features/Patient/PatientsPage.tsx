@@ -6,16 +6,14 @@ import {
   Button, ContentHeader,
   CustomLoader, Modal,
   Title,
-  UserProfile,
 } from '../../components';
 import MainWrapper from '../../layouts/MainWrapper';
 import ContentWrapper from '../../layouts/ContentWrapper';
 import ButtonWrapper from '../../layouts/ButtonWrapper';
 import CardWrapper from '../../layouts/CardWrapper';
-import PageWrapper from '../../layouts/PageWrapper/PageWrapper';
 import { DICTIONARY } from '../../core/consts/dictionary';
 import { fetchListOfAppointmentsDoctor } from './redux/PatientSlice';
-import { fetchRefreshToken, fetchUserProfile } from '../Auth/redux/userSlice';
+import { fetchRefreshToken } from '../Auth/redux/userSlice';
 import PatientsList from './components/PatientsList';
 import PatientDropdownSearch from './components/PatientDropdownSearch';
 import { useAppSelector } from '../../store';
@@ -27,7 +25,6 @@ const PatientsPage = () => {
   const dispatch = useDispatch();
   const error = useAppSelector((state) => state.user.error);
   useEffect(() => {
-    dispatch(fetchUserProfile());
     dispatch(fetchListOfAppointmentsDoctor());
   }, [dispatch]);
   const listOfAppointments = useAppSelector((state) => state.patient.listOfAppointments);
@@ -42,7 +39,7 @@ const PatientsPage = () => {
     setModalVariant(e);
   };
   return (
-    <PageWrapper>
+    <>
       {open && (
       <Modal
         variant={modalVariant}
@@ -50,7 +47,6 @@ const PatientsPage = () => {
         handleSetOpenModal={handleSetOpenModal}
       />
       )}
-      <UserProfile userProfile={userProfile} />
       <MainWrapper>
         <ContentWrapper>
           <ButtonWrapper>
@@ -77,7 +73,7 @@ const PatientsPage = () => {
           </CardWrapper>
         </ContentWrapper>
       </MainWrapper>
-    </PageWrapper>
+    </>
   );
 };
 

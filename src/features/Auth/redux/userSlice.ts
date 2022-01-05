@@ -1,12 +1,13 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { UserSignInProps, UserSignUpProps, UserSliceTypes } from './types';
 import { API_BASE } from '../../../core/consts/api';
 import saveToken from '../../../helpers/saveToken';
+import { fetchHttp } from '../../../helpers';
 
 const storageUser = 'userAuth';
 
 export const fetchRefreshToken = createAsyncThunk(
-  'auth/getRefreshToken',
+  'auth/fetchRefreshToken',
   async () => {
     const token = JSON.parse(localStorage.getItem('userAuth') as string);
     try {
@@ -32,53 +33,39 @@ export const fetchRefreshToken = createAsyncThunk(
 
 export const fetchUserProfile = createAsyncThunk(
   'user/fetchUserProfile',
-  async (_, { rejectWithValue, dispatch }) => {
-    const token = JSON.parse(localStorage.getItem('userAuth') as string);
+  async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch(`${API_BASE}auth/profile`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: token.access_token,
-        },
-      });
-      if (!response.ok) {
-        throw new Error(response.statusText);
+      const params = {
+        url: 'auth/profile',
+        fetchWithToken: true,
+      };
+      const data = await fetchHttp(params);
+      if (data.status) {
+        return rejectWithValue(data.status);
       }
-
-      const data = await response.json();
       localStorage.setItem('role', data.role_name);
       return data;
-    } catch ({ message }) {
-      if (message === 'Forbidden') dispatch(fetchRefreshToken());
-      return rejectWithValue(message);
+    } catch (e) {
+      return e;
     }
   },
 );
 
 export const signUpUser = createAsyncThunk(
   'user/signUp',
-  async (params:UserSignUpProps, { dispatch }) => {
+  async (values:UserSignUpProps, { dispatch }) => {
     try {
       const {
-        userName, password, firstName, lastName,
-      } = params;
-      const response = await fetch(`${API_BASE}auth/registration`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+        userName, firstName, lastName, password,
+      } = values;
+      const params = {
+        url: 'auth/registration',
+        body: {
+          userName, firstName, lastName, password,
         },
-        body: JSON.stringify({
-          userName,
-          password,
-          firstName,
-          lastName,
-        }),
-      });
-      if (!response.ok) {
-        throw new Error();
-      }
-      const data = await response.json();
+        method: 'POST',
+      };
+      const data = await fetchHttp(params);
       saveToken(data);
       await dispatch(fetchUserProfile());
       return data;
@@ -90,25 +77,17 @@ export const signUpUser = createAsyncThunk(
 
 export const signInUser = createAsyncThunk(
   'user/SignIn',
-  async (params:UserSignInProps, { dispatch }) => {
-    const { userName, password } = params;
+  async (values:UserSignInProps, { dispatch }) => {
     try {
-      const response = await fetch(`${API_BASE}auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const { userName, password } = values;
+      const params = {
+        url: 'auth/login',
+        body: {
+          userName, password,
         },
-        body: JSON.stringify({
-          userName,
-          password,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error();
-      }
-
-      const data = await response.json();
+        method: 'POST',
+      };
+      const data = await fetchHttp(params);
       saveToken(data);
       await dispatch(fetchUserProfile());
       return data;
@@ -133,19 +112,6 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(signInUser.pending, (state) => {
-        state.status = 'pending';
-        state.error = null;
-      })
-      .addCase(signUpUser.pending, (state) => {
-        state.status = 'pending';
-        state.error = null;
-      })
-      .addCase(fetchUserProfile.pending, (state) => {
-        state.status = 'pending';
-        state.error = null;
-      });
-    builder
       .addCase(signInUser.fulfilled, (state) => {
         state.status = 'fulfilled';
         state.auth = true;
@@ -162,18 +128,24 @@ const userSlice = createSlice({
         state.userProfile = action.payload;
       });
     builder
-      .addCase(signInUser.rejected, (state, action) => {
-        state.status = 'rejected';
-        state.error = action.error;
-      })
-      .addCase(signUpUser.rejected, (state, action) => {
-        state.status = 'rejected';
-        state.error = action.error;
-      })
-      .addCase(fetchUserProfile.rejected, (state, action) => {
-        state.status = 'rejected';
-        state.error = action.error;
-      });
+      .addMatcher(
+        isAnyOf(signInUser.pending,
+          signInUser.pending,
+          fetchUserProfile.pending,
+          fetchRefreshToken.pending), (state) => {
+          state.status = 'pending';
+          state.error = null;
+        },
+      );
+    builder
+      .addMatcher(
+        isAnyOf(signInUser.rejected,
+          signUpUser.rejected, fetchUserProfile.rejected,
+          fetchRefreshToken.rejected), (state, action) => {
+          state.status = 'rejected';
+          state.error = action.payload;
+        },
+      );
   },
 });
 

@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './store';
+import { Provider, useDispatch } from 'react-redux';
+import store, { useAppSelector } from './store';
 import useRoutes from './core/hooks/useRoutes';
+import PageWrapper from './layouts/PageWrapper';
+import { UserProfile } from './components';
+import { fetchRefreshToken, fetchUserProfile } from './features/Auth/redux/userSlice';
 
 const Global = createGlobalStyle`
     body {
@@ -17,12 +20,35 @@ const Global = createGlobalStyle`
 
 const App = () => {
   const router = useRoutes();
+  const dispatch = useDispatch();
+  const auth = useAppSelector((state) => state.user.auth);
+  const error = useAppSelector((state) => state.user.error);
+  useEffect(() => {
+    const fixError = async () => {
+      await dispatch(fetchRefreshToken());
+      await dispatch(fetchUserProfile());
+    };
+    if (error === 403) {
+      fixError();
+    }
+  }, [dispatch, error]);
   return (
     <>
       <Provider store={store}>
         <Global />
         <Router>
-          {router}
+          {!auth
+            ? (
+              <>
+                {router}
+              </>
+            )
+            : (
+              <PageWrapper>
+                <UserProfile />
+                {router}
+              </PageWrapper>
+            )}
         </Router>
       </Provider>
     </>
